@@ -1,0 +1,69 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+        <form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+        <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报时间</label>
+				        <div class="col-xs-12 col-sm-4">
+					          {:build_select('mondata[]', $mondata, null, ['id'=>'mondata','class'=>'form-control selectpicker', 'multiple'=>'', 'data-rule'=>'required'])}
+				         </div>
+				    </div>
+				            <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报单位</label>
+				            {if $admin_company_id eq 1}
+								<div class="col-xs-12 col-sm-4">
+								 {:build_select('companydata[]', $companydata, [], ['id'=>'companydata','class'=>'form-control selectpicker', 'multiple'=>'', 'data-rule'=>'required'])}
+								</div>
+				            {else}
+								<div class="col-xs-12 col-sm-4">
+								 {:build_select('companydata[]', $companydata, [$admin_company_id], ['id'=>'companydata','class'=>'form-control selectpicker', 'multiple'=>'', 'disabled'=>'disabled'])}
+								</div>
+				            {/if}
+				            <input type="hidden" id="ad_c_id" value="{$admin_company_id}" />
+				    </div>
+				            <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报项目</label>
+				        <div class="col-xs-12 col-sm-4">
+					         {:build_select('objdata[]', $objdata, null, ['id'=>'objdata','class'=>'form-control selectpicker', 'multiple'=>'', 'data-rule'=>'required'])}
+				        </div>
+				    </div>
+					<div class="form-group">
+						<label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">是否合计</label>
+						<div class="col-xs-12 col-sm-4">
+							<select id="iptSelect" class="form-control selectpicker">
+								<option value ="0">否</option>
+								<option value ="1">是</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">只显示1-本月合计</label>
+						<div class="col-xs-12 col-sm-4">
+							<select id="oneCnt" class="form-control selectpicker">
+								<option value ="0">否</option>
+								<option value ="1">是</option>
+							</select>
+						</div>
+					</div>
+				     <input type="button" class="btn btn-success btn-embossed" id="submit" value="{:__('Search')}" />
+                        <input type="reset" class="btn btn-default btn-embossed" id="reset" value="{:__('Reset')}" />
+                        <input type="button" class="btn btn-warning btn-embossed" id="export_excel" value="导出EXCEL" />
+				    </form>
+            <div class="tab-pane fade active in" id="one">
+            
+                <div class="widget-body no-padding">
+                    <table id="table" class="table table-striped table-bordered table-hover" style="word-break:break-all; word-wrap:break-all;table-layout:fixed"
+                           data-operate-del="{:$auth->check('review/proofreadingm/del')}"
+                           width="100%">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

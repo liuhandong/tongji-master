@@ -1,0 +1,109 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+<input type="hidden" id="ids" value="{$ids}">
+<?php
+        	$nd=date("Y");
+        	$st=date("Y")-2;
+        	$ed=date("Y")+2;
+        ?>
+	{foreach $row as $k => $v}
+    
+        {if $v.pid eq '0'}
+        {elseif  $v.pid eq ''}
+        <div class="form-group">
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.rf_title}</label>
+        
+        <div class="col-xs-12 col-sm-2">
+	       
+            <input type="text" class="form-control"  style="width: 300px;"  name="row[{$v.id}]" value="{$v.item_val}" disabled/>
+
+        </div>
+            </div>
+        {/if}
+
+    {/foreach}
+
+    <div class="row headerBackground">
+        <div class="col-sm-3">指标</div>
+        <div class="col-sm-2">代码</div>
+        <div class="col-sm-1">单位</div>
+        <div class="col-sm-3 clearfix">
+            <div style="width: 80px;" class="pull-left">本年</div>
+        </div>
+        <div class="col-sm-1">上年同期</div>
+        <div class="col-sm-1">同比增长</div>
+        <!--<div class="col-sm-2">5</div>-->
+    </div>
+    {foreach $row as $k => $v}
+    {if $v.pid eq '0'}
+		<div class="form-group">
+        <label for="rf_title" class="control-label col-xs-12 col-sm-3" title="{$v.rf_note}"><b>{$v.rf_title}</b></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2"></label>
+        <label class="control-label col-xs-12 col-sm-1"></label>
+         <label for="rf_title" class="control-label col-xs-12 col-sm-3"></label>
+         <label for="rf_title" class="control-label col-xs-12 col-sm-1"></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-1"></label>
+        </div>
+        {elseif $v.pid eq ''}
+        
+        {else}
+        <?php
+         $rf_title=$v['rf_title'];
+         $num=intval(substr($rf_title,0,3));
+         $title=explode($num,$rf_title);
+         ?>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" ><?php 
+        	if($num>0)
+        	{
+        		for($i=0;$i<$num;$i++)
+        		{
+        			echo "&nbsp;";
+        		}
+        		echo $title[1];
+        	}
+        	else
+        	{
+        		echo $title[0];
+        	}
+        
+        
+        ?></label>
+        <label class="control-label col-xs-12 col-sm-2">{$v.code}</label>
+        <label class="control-label col-xs-12 col-sm-1">{$v.unit_name}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control" style="width: 80px;"  name="" value="{$v.item_val}" disabled id="month_{$v.rf_id}"/>
+        </div>
+        <label class="control-label col-xs-12 col-sm-1">{$v.lastyear}</label>
+        <label class="control-label col-xs-12 col-sm-1">{$v.growth}</label>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    {/if}
+    {/foreach}
+	<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" >附件</label>
+        <div class="col-xs-12 col-sm-8">
+            
+        </div>
+
+    </div>
+    {foreach $list as $k => $v}
+	<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" ></label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <a href="{$v.file_path_url}" target="_blank">{$v.file_path}</a>
+           
+        </div>
+
+    </div>
+     {/foreach}
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+		<button type="button" id="export_excel" class="btn btn-warning btn-embossed">导出EXCEL</button>
+			{if $current_company_id eq 1 && $current_user_name eq "admin"}
+				<button type="submit" class="btn btn-success btn-embossed">驳回</button>
+			{/if}
+        </div>
+    </div>
+</form>

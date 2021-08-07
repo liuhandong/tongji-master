@@ -1,0 +1,242 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+	 <!--<div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报单位</label>
+        <div class="col-xs-12 col-sm-2">
+	                    <select name="row[company_id]" class="selectpicker" style="width: 150px;" id="company_select">
+	                    <option>请选择填报单位</option>
+
+            </select>
+                    </div>
+    </div>-->
+	  <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" style="width: 150px;">{:__('setTime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+        <?php
+        	$nd=date("Y");
+        	$st=date("Y")-2;
+        	$ed=date("Y")+2;
+        	$month=date("m");
+        	
+        ?>
+            <select name="row[set_year]" class="selectpicker" style="width: 150px;" id="declareds_year">
+            	<?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>&nbsp;&nbsp;
+            <select name="row[set_mon]" class="selectpicker" style="width: 150px;" id="declareds_mon">
+                <option value="01" <?php if("01"==$month){ echo "selected";}?>>01月</option>
+                <option value="02" <?php if("02"==$month){ echo "selected";}?>>02月</option>
+                <option value="03" <?php if("03"==$month){ echo "selected";}?>>03月</option>
+                <option value="04" <?php if("04"==$month){ echo "selected";}?>>04月</option>
+                <option value="05" <?php if("05"==$month){ echo "selected";}?>>05月</option>
+                <option value="06" <?php if("06"==$month){ echo "selected";}?>>06月</option>
+                <option value="07" <?php if("07"==$month){ echo "selected";}?>>07月</option>
+                <option value="08" <?php if("08"==$month){ echo "selected";}?>>08月</option>
+                <option value="09" <?php if("09"==$month){ echo "selected";}?>>09月</option>
+                <option value="10" <?php if("10"==$month){ echo "selected";}?>>10月</option>
+                <option value="11" <?php if("11"==$month){ echo "selected";}?>>11月</option>
+                <option value="12" <?php if("12"==$month){ echo "selected";}?>>12月</option>
+            </select>
+            </div>
+    </div>
+     
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title=""  style="width: 150px;">有限期至</label>
+        <div class="col-xs-12 col-sm-4">
+	        	         <select name="row[validity_year]" class="selectpicker" style="width: 150px;" id="validity_year">
+                <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>&nbsp;&nbsp;
+            <select name="row[validity_mon]" class="selectpicker" style="width: 150px;" id="validity_mon">
+               <option value="01" <?php if("01"==$month){ echo "selected";}?>>01月</option>
+                <option value="02" <?php if("02"==$month){ echo "selected";}?>>02月</option>
+                <option value="03" <?php if("03"==$month){ echo "selected";}?>>03月</option>
+                <option value="04" <?php if("04"==$month){ echo "selected";}?>>04月</option>
+                <option value="05" <?php if("05"==$month){ echo "selected";}?>>05月</option>
+                <option value="06" <?php if("06"==$month){ echo "selected";}?>>06月</option>
+                <option value="07" <?php if("07"==$month){ echo "selected";}?>>07月</option>
+                <option value="08" <?php if("08"==$month){ echo "selected";}?>>08月</option>
+                <option value="09" <?php if("09"==$month){ echo "selected";}?>>09月</option>
+                <option value="10" <?php if("10"==$month){ echo "selected";}?>>10月</option>
+                <option value="11" <?php if("11"==$month){ echo "selected";}?>>11月</option>
+                <option value="12" <?php if("12"==$month){ echo "selected";}?>>12月</option>
+            </select>
+	                </div>
+    </div>
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">单位负责人</label>
+        <div class="col-xs-12 col-sm-2">
+	                    <input type="text" class="form-control"  style="width: 300px;"  name="row[307]" value=""/>
+                    </div>
+    </div>
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报人</label>
+        <div class="col-xs-12 col-sm-2">
+	                    <input type="text" class="form-control"  style="width: 300px;"  name="row[308]" value=""/>
+                    </div>
+    </div>
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">报出日期</label>
+        <div class="col-xs-12 col-sm-2">
+	                    <input type="datetime" class="form-control " style="width: 300px;"  name="row[309]" value="<?php echo date('Y-m-d');?>" placeholder="" readonly="readonly" />
+                    </div>
+    </div>
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">说明</label>
+        <div class="col-xs-12 col-sm-4">
+	                    <input type="text" class="form-control"  style="width: 300px;"  name="row[310]" value="10.11.13.16.17.19六项指标月报免填,季度填报；14.20两项指标年末填报。"/>
+                    </div>
+    </div>
+    <div class="row headerBackground">
+        <div class="col-sm-3">指标</div>
+        <div class="col-sm-1">代码</div>
+        <div class="col-sm-2">单位</div>
+        <div class="col-sm-2">本月</div>
+        <div class="col-sm-2">1-本月</div>
+        <div class="col-sm-1">上年同期</div>
+        <div class="col-sm-1">同比增长</div>
+        <!--<div class="col-sm-2">5</div>-->
+    </div>
+    {foreach $rows as $k => $v}
+    
+        {if $v.pid eq '0'}
+        <div class="form-group">
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-3" title="{$v.rf_note}"><b>{$v.rf_title}</b></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-1"></label>
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-2">
+            <input type="hidden" class="form-control" style="width: 100px;" name="row[{$v.id}]" value=""/>
+        </div>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2"></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2"></label>
+        </div>
+        {elseif $v.pid eq ''}
+        
+        {else}
+         <div class="form-group">
+          <?php
+         $rf_title=$v['rf_title'];
+         $num=intval(substr($rf_title,0,3));
+         $title=explode($num,$rf_title);
+         ?>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-3" title="{$v.rf_note}"> <?php 
+        	if($num>0)
+        	{
+        		for($i=0;$i<$num;$i++)
+        		{
+        			echo "&nbsp;";
+        		}
+        		echo $title[1];
+        	}
+        	else
+        	{
+        		echo $title[0];
+        	}
+        
+        
+        ?></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-1">{$v.code}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$v.unit_name}</label>
+        <div class="col-xs-12 col-sm-2">
+        	  <?php
+        	  if($v['code']=="14" or $v['code']=="20")
+        	  {
+        	  	if($month=="12")
+        	  	{
+        	  	?>
+        	  	<input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        	  <?php
+        	  	}
+        	  	else
+        	  	{
+        	  ?>
+        	   		<input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value="" disabled/>
+        	  <?php
+        	  	}
+        	  }
+        	  elseif($v['code']=="10" or $v['code']=="11" or $v['code']=="16" or $v['code']=="17" or $v['code']=="13" or $v['code']=="19")
+        	  {
+        	  	if($month=="03" or $month=="06"  or $month=="09" or $month=="12")
+        	  	{
+        	  	?>
+        	  	<input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        	  <?php
+        	  	}
+        	  	else
+        	  	{
+        	  ?>
+        	   		<input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value="" disabled/>
+        	  <?php
+        	  	}
+        	  }
+        	  else
+        	  {
+        	  ?>
+           	<input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+            <?php
+            }
+            ?>
+        </div>
+        <?php
+        	  if($v['code']=="8" or $v['code']=="25" or $v['code']=="26" or $v['code']=="32" or $v['code']=="33" or $v['code']=="37" or $v['code']=="38" or $v['code']=="40" or $v['code']=="41" or $v['code']=="43" or $v['code']=="45")
+        	  {
+        	  ?>
+        	  <div class="col-xs-12 col-sm-2">
+        		<input type="text" class="form-control" style="width: 100px;"  onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row2[{$v.id}]" value=""/>
+        	</div>
+        	   <?php
+        	  }
+        	  else
+        	  {
+        	  ?>
+        	     <label for="rf_title" class="control-label col-xs-12 col-sm-2" id="total_{$v.id}"></label>
+        <?php
+        	  }
+        ?>
+        
+        <label for="rf_title" class="control-label col-xs-12 col-sm-1 lastyear_s" id="lastyear_{$v.id}"></label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-1 lastyear_s" id="growth_{$v.id}"></label>
+        </div>
+        {/if}
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    
+    {/foreach}
+	 <div class="form-group">
+		<label for="c-thumb" class="control-label col-xs-12 col-sm-2">附件上传:</label>
+		<div class="col-xs-12 col-sm-8">
+				<div class="input-group">
+					<input id="c-thumb" class="form-control" size="50" name="row[thumb]" type="text" value="" />
+					<div class="input-group-addon no-border no-padding">
+						<span><button type="button" id="plupload-imagethumb" class="btn btn-danger plupload" data-input-id="c-thumb" data-multiple="true" data-preview-id="p-thumb"><i class="fa fa-upload"></i>上传</button></span>
+					</div>
+					<span class="msg-box n-right"></span>
+				</div>
+		        <ul class="row list-inline plupload-preview" id="p-thumb"></ul>
+		</div>
+</div>
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

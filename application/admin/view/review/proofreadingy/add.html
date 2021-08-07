@@ -1,0 +1,31 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+    {foreach $rows as $k => $v}
+    <div class="form-group">
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2">{$v.rf_title}</label>
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2">{$v.code}</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" style="width: 150px;" id="rf_title" name="row[{$v.id}]" value=""
+                   data-rule="required;rf_title"/>
+        </div>
+        <label class="control-label col-xs-12 col-sm-2" style="margin-left: -400px;">{$v.unit_name}</label>
+    </div>
+    {/foreach}
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('opUserId')}:</label>
+        <label class="control-label  col-sm-2">{$admin.nickname}</label>
+    </div>
+    <div class="form-group">
+        <label for="set_time" class="control-label col-xs-12 col-sm-2" style="width: 150px;">{:__('setTime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input type="text" class="form-control datetimepicker" id="set_time" name="row[set_time]" value=""
+                   data-rule="{:__('setTime')}:required;match(gte, row[begintime], datetime)" size="6"/>
+        </div>
+    </div>
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

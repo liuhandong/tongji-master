@@ -1,0 +1,27 @@
+<form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+    <input type="hidden" name="row[id]" value="{$row.id}"/>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('cityCode')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[city_code]" class="selectpicker form-control">
+                {volist name="city_code" id="data"}
+                <option value="{$data}" {if condition="$data eq $row.city_code"}selected{/if}>{$data}</option>
+                {/volist}
+            </select>
+            <!--{:build_select('city_code', $city_code, null, ['class'=>'form-control selectpicker', 'multiple'=>'', 'data-rule'=>'required'])}-->
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="city_name" class="control-label col-xs-12 col-sm-2">{:__('cityName')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="city_name" name="row[city_name]" value="{$row.city_name}" data-rule="required;city_name" />
+        </div>
+    </div>
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,134 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+
+<?php
+        	$nd=date("Y");
+        	$st=date("Y")-2;
+        	$ed=date("Y")+2;
+        ?>
+	{foreach $row as $k => $v}
+    
+        {if $v.pid eq '0'}
+        {elseif  $v.pid eq ''}
+        <div class="form-group">
+        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.rf_title}</label>
+        
+        <div class="col-xs-12 col-sm-2">
+	       {if $v.rf_title=="有限期至"}
+	       <?php 
+	       $tem=explode("-",$v['item_val']);
+	       if($tem[1]=="01")
+	       {
+	       	$q="第一季度";
+	       }
+	       elseif($tem[1]=="02")
+	       {
+	       	$q="第二季度";
+	       }
+	        elseif($tem[1]=="03")
+	       {
+	       	$q="第三季度";
+	       }
+	        elseif($tem[1]=="04")
+	       {
+	       	$q="第四季度";
+	       }
+	       $val=$tem[0]."年".$q;
+	       ?>
+            <input type="text" class="form-control"  style="width: 300px;"  name="row[{$v.id}]" value="<?php echo $val;?>" disabled/>
+            {else}
+            <input type="text" class="form-control"  style="width: 300px;"  name="row[{$v.id}]" value="{$v.item_val}" disabled/>
+            {/if}
+
+        </div>
+            </div>
+        {/if}
+
+    {/foreach}
+
+    <div class="row headerBackground">
+        <div class="col-sm-3">指标</div>
+        <div class="col-sm-2">代码</div>
+        <div class="col-sm-1">单位</div>
+        <div class="col-sm-3 clearfix">
+            <div style="width: 80px;" class="pull-left">1-本季</div>
+            <div style="width: 80px;" class="pull-left">校验值</div>
+        </div>
+        <div class="col-sm-1">偏离值</div>
+        <div class="col-sm-1">上年同期</div>
+        <div class="col-sm-1">同比增长</div>	
+        <!--<div class="col-sm-2">5</div>-->
+    </div>
+    {foreach $row as $k => $v}
+    {if $v.pid eq '0'}
+     <?php
+         $rf_title=$v['rf_title'];
+         $num=intval(substr($rf_title,0,3));
+         $title=explode($num,$rf_title);
+         ?>
+		<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" ><?php 
+        	if($num>0)
+        	{
+        		for($i=0;$i<$num;$i++)
+        		{
+        			echo "&nbsp;";
+        		}
+        		echo $title[1];
+        	}
+        	else
+        	{
+        		echo $title[0];
+        	}
+        
+        
+        ?></label>
+        <label class="control-label col-xs-12 col-sm-2">{$v.code}</label>
+        <label class="control-label col-xs-12 col-sm-1">{$v.unit_name}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control" style="width: 80px;"  name="" value="{$v.item_val}" disabled id="month_{$v.rf_id}"/>
+            <input type="text" class="form-control" style="width: 80px;"  name="row[{$v.id}]" value="{$v.chk_item_val}" id="check_{$v.rf_id}" disabled/>
+        </div>
+        <label class="control-label col-xs-12 col-sm-1" id="deviation_{$v.rf_id}">{$v.deviation}</label>
+        <label class="control-label col-xs-12 col-sm-1">{$v.lastyear}</label>
+        <label class="control-label col-xs-12 col-sm-1">{$v.growth}</label>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+        {elseif $v.pid eq ''}
+        
+ 
+    
+    {/if}
+    {/foreach}
+	<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" >附件</label>
+        <div class="col-xs-12 col-sm-8">
+            
+        </div>
+
+    </div>
+    {foreach $list as $k => $v}
+	<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" ></label>
+        <div class="col-xs-12 col-sm-8">
+            
+            <a href="{$v.file_path_url}" target="_blank">{$v.file_path}</a>
+           
+        </div>
+
+    </div>
+     {/foreach}
+
+	<div class="form-group">
+		<label class="control-label col-xs-12 col-sm-2" >校验员意见</label>
+		<div class="col-xs-12 col-sm-8">
+		    <textarea rows="4" cols="120" name=""  disabled="disabled">{$checkIdea}</textarea>
+		</div>
+	</div>
+
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+
+        </div>
+    </div>
+</form>

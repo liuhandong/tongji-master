@@ -1,0 +1,231 @@
+<form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+    <input type="hidden" name="row[id]" value="{$row.id}"/>
+    <div class="form-group">
+        <label for="company_park_name" class="control-label col-xs-12 col-sm-2">{:__('company_park_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="te4t" class="form-control" id="company_park_name" name="row[company_park_name]" value="{$row.company_park_name}"
+                   data-rule="required;"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="company_park_name" class="control-label col-xs-12 col-sm-2">{:__('company_park_name')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="te4t" class="form-control" id="company_name" name="row[company_name]" value="{$row.company_name}"
+                   data-rule="required;"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_address" class="control-label col-xs-12 col-sm-2">{:__('company_address')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_address" name="row[company_address]" value="{$row.company_address}"
+                   data-rule="required;company_address"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_code" class="control-label col-xs-12 col-sm-2">{:__('company_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_code" name="row[company_code]" value="{$row.company_code}"
+                   data-rule="required;company_code"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_online_code" class="control-label col-xs-12 col-sm-2">{:__('company_online_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_online_code" name="row[company_online_code]" value="{$row.company_online_code}"
+                   data-rule="required;company_online_code"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_postal_code" class="control-label col-xs-12 col-sm-2">{:__('company_postal_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_postal_code" name="row[company_postal_code]" value="{$row.company_postal_code}"
+                   data-rule="required;company_postal_code"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_telephone" class="control-label col-xs-12 col-sm-2">{:__('company_telephone')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_telephone" name="row[company_telephone]" value="{$row.company_telephone}"
+                   data-rule="required;company_telephone"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_fax" class="control-label col-xs-12 col-sm-2">{:__('company_fax')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_fax" name="row[company_fax]" value="{$row.company_fax}"
+                   data-rule="required;company_fax"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_mailbox" class="control-label col-xs-12 col-sm-2">{:__('company_mailbox')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_mailbox" name="row[company_mailbox]" value="{$row.company_mailbox}"
+                   data-rule="required;company_mailbox"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_website" class="control-label col-xs-12 col-sm-2">{:__('company_website')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_website" name="row[company_website]" value="{$row.company_website}"
+                   data-rule="required;company_website"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_approval_acreage" class="control-label col-xs-12 col-sm-2">{:__('company_approval_acreage')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_approval_acreage" name="row[company_approval_acreage]" value="{$row.company_approval_acreage}"
+                   data-rule="required;company_approval_acreage"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_administration_acreage" class="control-label col-xs-12 col-sm-2">{:__('company_administration_acreage')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_administration_acreage" name="row[company_administration_acreage]" value="{$row.company_administration_acreage}"
+                   data-rule="required;company_administration_acreage"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_code_one" class="control-label col-xs-12 col-sm-2">{:__('company_code_one')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_code_one" name="row[company_code_one]" value="{$row.company_code_one}"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_code_two" class="control-label col-xs-12 col-sm-2">{:__('company_code_two')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_code_two" name="row[company_code_two]" value="{$row.company_code_two}"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_code_there" class="control-label col-xs-12 col-sm-2">{:__('company_code_there')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_code_there" name="row[company_code_there]" value="{$row.company_code_there}"
+            />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_num" class="control-label col-xs-12 col-sm-2">{:__('company_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_num" name="row[company_num]" value="{$row.company_num}"
+                   data-rule="required;company_num"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_country_num" class="control-label col-xs-12 col-sm-2">{:__('company_country_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_country_num" name="row[company_country_num]" value="{$row.company_country_num}"
+                   data-rule="required;company_country_num"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_town_num" class="control-label col-xs-12 col-sm-2">{:__('company_town_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_town_num" name="row[company_town_num]" value="{$row.company_town_num}"
+                   data-rule="required;company_town_num"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_street_office_num" class="control-label col-xs-12 col-sm-2">{:__('company_street_office_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_street_office_num" name="row[company_street_office_num]" value="{$row.company_street_office_num}"
+                   data-rule="required;company_street_office_num"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_neighborhood_committee_num" class="control-label col-xs-12 col-sm-2">{:__('company_neighborhood_committee_num')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_neighborhood_committee_num" name="row[company_neighborhood_committee_num]" value="{$row.company_neighborhood_committee_num}"
+                   data-rule="required;company_neighborhood_committee_num"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_person_in_charge" class="control-label col-xs-12 col-sm-2">{:__('company_person_in_charge')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_person_in_charge" name="row[company_person_in_charge]" value="{$row.company_person_in_charge}"
+                   data-rule="required;company_person_in_charge"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('company_class_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[company_class_code]" class="selectpicker form-control">
+                <option value="1" {if condition="1 eq $row.company_class_code"}selected{/if}>经济技术开发区</option>
+                <option value="2" {if condition="2 eq $row.company_class_code"}selected{/if}>保税区</option>
+                <option value="3" {if condition="3 eq $row.company_class_code"}selected{/if}>高新技术产业开发区</option>
+                <option value="4" {if condition="4 eq $row.company_class_code"}selected{/if}>旅游度假区</option>
+                <option value="5" {if condition="5 eq $row.company_class_code"}selected{/if}>经济开发区</option>
+                <option value="6" {if condition="6 eq $row.company_class_code"}selected{/if}>文化产业园区</option>
+                <option value="7" {if condition="7 eq $row.company_class_code"}selected{/if}>沿海经济带重点园区</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('company_level_code')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[company_level_code]" class="selectpicker form-control">
+                <option value="1" {if condition="1 eq $row.company_level_code"}selected{/if}>国家级</option>
+                <option value="0" {if condition="2 eq $row.company_level_code"}selected{/if}>省级</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('company_approval_authority')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[company_approval_authority]" class="selectpicker form-control">
+                <option value="1" {if condition="1 eq $row.company_approval_authority"}selected{/if}>国务院</option>
+                <option value="0" {if condition="2 eq $row.company_approval_authority"}selected{/if}>省政府</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('company_09001_certification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[company_09001_certification]" class="selectpicker form-control">
+                <option value="1" {if condition="1 eq $row.company_09001_certification"}selected{/if}>是</option>
+                <option value="0" {if condition="0 eq $row.company_09001_certification"}selected{/if}>否</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('company_14001_certification')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[company_14001_certification]" class="selectpicker form-control">
+                <option value="1" {if condition="1 eq $row.company_14001_certification"}selected{/if}>是</option>
+                <option value="0" {if condition="0 eq $row.company_14001_certification"}selected{/if}>否</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_administrative_level" class="control-label col-xs-12 col-sm-2">{:__('company_administrative_level')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_administrative_level" name="row[company_administrative_level]" value="{$row.company_administrative_level}"
+                   data-rule="required;company_administrative_level"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_approval_symbol" class="control-label col-xs-12 col-sm-2">{:__('company_approval_symbol')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="company_approval_symbol" name="row[company_approval_symbol]" value="{$row.company_approval_symbol}"
+                   data-rule="required;company_approval_symbol"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="company_approval_time" class="control-label col-xs-12 col-sm-2" >{:__('company_approval_time')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <input type="text" class="form-control datetimepicker" data-date-format=" YYYY-MM-DD"
+                   id="company_approval_time" name="row[company_approval_time]"
+                   data-rule="{:__('company_approval_time')}:required;match(gte, row[begintime], datetime)"
+                   data-date-default-date="{$row.company_approval_time|date='Y-m-d',###}"/>
+        </div>
+    </div>
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

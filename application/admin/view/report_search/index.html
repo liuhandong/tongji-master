@@ -1,0 +1,50 @@
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+        <form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+        
+				            <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报单位</label>
+				        <div class="col-xs-12 col-sm-4">
+					         {:build_select('companydata[]', $companydata, 1, ['id'=>'companydata','multiple'=>'', 'class'=>'form-control selectpicker'])}
+				         </div>
+				    </div>
+				    <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报年份</label>
+				        <div class="col-xs-12 col-sm-4">
+					          {:build_select('mondata[]', $mondata, $date, ['id'=>'mondata','class'=>'form-control selectpicker'])}
+				         </div>
+				          <div class="col-xs-12 col-sm-4" id="monthhtml" style="display:none">
+					          {:build_select('monthdata[]', $monthdata,'01', ['id'=>'monthdata','class'=>'form-control selectpicker'])}
+				         </div>
+				         <div class="col-xs-12 col-sm-4" id="seasonhtml" style="display:none">
+					          {:build_select('seasondata[]', $seasondata, '01', ['id'=>'seasondata','class'=>'form-control selectpicker'])}
+				         </div>
+				    </div>
+				            <div class="form-group">
+				        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报种别</label>
+				        <div class="col-xs-12 col-sm-4">
+					         {:build_select('objdata[]', $objdata, null, ['id'=>'objdata','class'=>'form-control selectpicker'])}
+				        </div>
+				    </div>
+
+				     <input type="button" class="btn btn-success btn-embossed" id="submit" value="{:__('Search')}" />
+                        <input type="reset" class="btn btn-default btn-embossed" id="reset" value="{:__('Reset')}" />
+                        {:build_toolbar('refresh')}
+				    </form>
+		            <div class="tab-pane fade active in" id="one">
+		                <div class="widget-body no-padding">
+		                   
+		                    <table id="table" class="table table-striped table-bordered table-hover"  data-sortable="true" style="word-break:break-all; word-wrap:break-all;table-layout:fixed"
+		                           data-operate-del="{:$auth->check('review/proofreadingm/del')}"
+		                           width="80%">
+		                    </table>
+		                </div>
+		            </div>
+		</div>
+</div>

@@ -1,0 +1,48 @@
+<style type="text/css">
+    #searchfloat {position:absolute;top:40px;right:20px;background:#F7F0A0;padding:10px;}
+    #saved {position: relative;}
+    #saved_sql {position:absolute;bottom:0;height:300px;background:#F7F0A0;width:100%;overflow:auto;display:none;}
+    #saved_sql li {display:block;clear:both;width:100%;float:left;line-height:18px;padding:1px 0}
+    #saved_sql li a{float:left;text-decoration: none;display:block;padding:0 5px;}
+    #saved_sql li i{display:none;float:left;color:#06f;font-size: 14px;font-style: normal;margin-left:2px;line-height:18px;}
+    #saved_sql li:hover{background:#fff;}
+    #saved_sql li:hover i{display:block;cursor:pointer;}
+    #database #tablename {height:205px;width:100%;padding:5px;}
+    #database #tablename option{height:18px;}
+    #database #subaction {height:210px;width:100%;}
+    #database .select-striped > option:nth-of-type(odd) {background-color: #f9f9f9;}
+    #database .dropdown-menu ul {margin:-3px 0;}
+    #database .dropdown-menu ul li{margin:3px 0;}
+    #database .dropdown-menu.row .col-xs-6{padding:0 5px;}
+    #sqlquery {font-size:12px;color:#444;}
+    #resultparent {padding:5px;}
+</style>
+<div class="panel panel-default panel-intro">
+    {:build_heading()}
+
+    <div class="panel-body">
+        <div id="database" class="tab-content">
+            <div class="tab-pane fade active in" id="one">
+                <div class="widget-body no-padding">
+                    <form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+                    <div id="backuplist">
+                    	{foreach $row as $k => $v}
+				    <div class="form-group">
+        
+				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">IP</label>
+				        <div class="col-xs-12 col-sm-8">
+					                    <input type="text" class="form-control"  style="width: 300px;"  name="ip" value="{$v.ip}" data-rule="required" />
+				                    </div>
+				    </div>
+				       {/foreach}
+					    <input type="submit" class="btn btn-success btn-embossed" id="submit" value="{:__('Edit')}" />
+                        <input type="reset" class="btn btn-default btn-embossed" value="{:__('Reset')}" />
+				    </form>
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
