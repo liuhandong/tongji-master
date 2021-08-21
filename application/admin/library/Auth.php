@@ -368,9 +368,11 @@ class Auth extends \fast\Auth
         $selected = $referer = [];
         $refererUrl = Session::get('referer');
         $pinyin = new \Overtrue\Pinyin\Pinyin('Overtrue\Pinyin\MemoryFileDictLoader');
-        // 必须将结果集转换为数组
-        $ruleList = collection(\app\admin\model\AuthRule::where('status', 'normal')->where('ismenu', 1)->order('weigh', 'desc')->cache("__menu__")->select())->toArray();
+        // 必须将结果集转换为数组 ->cache("__menu__")
+        $ruleList = collection(\app\admin\model\AuthRule::where('status', 'normal')->where('ismenu', 1)->order('weigh', 'desc')->select())->toArray();
+        //var_dump($ruleList);
         foreach ($ruleList as $k => &$v) {
+            //var_dump($v['name']);
             if (!in_array($v['name'], $userRule)) {
                 unset($ruleList[$k]);
                 continue;
@@ -418,6 +420,7 @@ class Auth extends \fast\Auth
             // 构造菜单数据
             Tree::instance()->init($ruleList);
             $menu = Tree::instance()->getTreeMenu(0, '<li class="@class"><a href="@url@addtabs" addtabs="@id" url="@url" py="@py" pinyin="@pinyin"><i class="@icon"></i> <span>@title</span> <span class="pull-right-container">@caret @badge</span></a> @childlist</li>', $select_id, '', 'ul', 'class="treeview-menu"');
+            
             if ($selected) {
                 $nav .= '<li role="presentation" id="tab_' . $selected['id'] . '" class="' . ($referer ? '' : 'active') . '"><a href="#con_' . $selected['id'] . '" node-id="' . $selected['id'] . '" aria-controls="' . $selected['id'] . '" role="tab" data-toggle="tab"><i class="' . $selected['icon'] . ' fa-fw"></i> <span>' . $selected['title'] . '</span> </a></li>';
             }
@@ -425,7 +428,7 @@ class Auth extends \fast\Auth
                 $nav .= '<li role="presentation" id="tab_' . $referer['id'] . '" class="active"><a href="#con_' . $referer['id'] . '" node-id="' . $referer['id'] . '" aria-controls="' . $referer['id'] . '" role="tab" data-toggle="tab"><i class="' . $referer['icon'] . ' fa-fw"></i> <span>' . $referer['title'] . '</span> </a> <i class="close-tab fa fa-remove"></i></li>';
             }
         }
-
+        
         return [$menu, $nav, $selected, $referer];
     }
 

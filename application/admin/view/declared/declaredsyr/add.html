@@ -1,0 +1,122 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+     <?php
+        	$nd=date("Y");
+        	$st=date("Y")-2;
+        	$ed=date("Y")+2;
+        ?>
+<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" style="width: 150px;">{:__('setTime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <select name="row[set_time]" class="selectpicker" style="width: 150px;" id="declareds_time">
+               <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    {foreach $rows as $k => $v}
+    
+        {if $v.pid eq '0'}
+        {elseif  $v.pid eq ''}
+        <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.name}</label>
+        
+        <div class="col-xs-12 col-sm-2">
+	        
+            {if $v.name eq "有限期至"}
+	        <select name="row[{$v.id}]" class="selectpicker" style="width: 150px;">
+               <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>
+            {elseif $v.name eq "报出日期"}
+            	<input type="datetime" class="form-control" style="width: 300px;"  name="row[{$v.id}]" value="<?php echo date('Y-m-d');?>" placeholder="" readonly="readonly"  />
+	        {else}
+            <input type="text" class="form-control" style="width: 300px;"  name="row[{$v.id}]" value=""/>
+            {/if}
+        </div>
+            </div>
+        {/if}
+
+    {/foreach}
+    <div class="row headerBackground">
+        <div class="col-sm-4">指标</div>
+        <div class="col-sm-2">序号</div>
+        <div class="col-sm-2">园区填报</div>
+        <div class="col-sm-2">附件上传</div>
+        <div class="col-sm-1">考核主体</div>
+        <!--div class="col-sm-1">同比增长</div>-->
+        <!--<div class="col-sm-2">5</div>-->
+    </div>
+    {foreach $rows as $k => $v}
+   
+        {if $v.pid eq '0'}
+         <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-4" title="{$v.rf_note}"><b>{$v.name}</b></label>
+        <label for="name" class="control-label col-xs-12 col-sm-2"></label>
+       
+        <div class="col-xs-12 col-sm-2">
+            <input type="hidden" class="form-control" style="width: 100px;" name="row[{$v.id}]" value=""/>
+        </div>
+        <label  class="control-label col-xs-12 col-sm-2"></label>
+        <label  class="control-label col-xs-12 col-sm-2"></label>
+            </div>
+		{elseif $v.pid eq ''}
+        
+        {else}
+         <div class="form-group">
+          <?php
+         $name=$v['name'];
+         $num=intval(substr($name,0,3));
+         
+         $title=explode($num,$name);
+         ?>
+        <label for="name" class="control-label col-xs-12 col-sm-4" title="{$v.rf_note}"><?php 
+       	if($num==0)
+       	{
+       		echo $v['name'];
+       	}
+        else
+        {
+            for($i=0;$i<$num;$i++)
+            {
+                echo "&nbsp;";
+            }
+            echo $title[1];
+        }
+        	
+        
+        
+        ?></label>
+        <label for="name" class="control-label col-xs-12 col-sm-2">{$v.seqn}</label>
+        <!--label class="control-label col-xs-12 col-sm-2">{$v.unit_name}</label>-->
+        <div class="col-xs-12 col-sm-2">
+            <input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+            <span><button type="button" id="plupload-imagethumb" class="btn btn-danger plupload" data-input-id="c-thumb" data-multiple="true" data-preview-id="p-thumb"><i class="fa fa-upload"></i>上传</button></span>
+        </div>
+        <label for="name" class="control-label col-xs-12 col-sm-2">{$v.topic}</label>
+            </div>
+        {/if}
+        <!--<label  class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+
+    {/foreach}
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

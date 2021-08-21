@@ -49,6 +49,7 @@ class Index extends Backend
        {
        	$navlist=str_replace("填报","查看",$navlist);
        }
+        //var_dump($menulist);
         $this->view->assign('menulist', $menulist);
         $this->view->assign('navlist', $navlist);
         $this->view->assign('fixedmenu', $fixedmenu);
