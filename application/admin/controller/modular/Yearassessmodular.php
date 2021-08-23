@@ -26,16 +26,32 @@ class Yearassessmodular extends Backend
      */
     public function index(){
         //快捷查询数组数组联合查询需要带表名
-        $searchArr = array('compdata','mondata[]');
+        $searchArr = array('rf_year','their_garden');
+        
         $year_now=date("Y");
         if ($this->request->isAjax()){
-            list($where, $sort, $order, $offset, $limit) = $this->sql_buildparams($searchArr);
-        
+            //list($where, $sort, $order, $offset, $limit) = $this->sql_buildparams($searchArr);
+            $rf_year = $this->request->get("rf_year");
+            $their_garden = $this->request->get("their_garden");
+            $sort = $this->request->get("sort");
+            $order = $this->request->get("order");
+            $offset = $this->request->get("offset");
+            $limit = $this->request->get("limit");
+            $where="where 1=1 ";
+            //if($rf_year!="")
+            //{
+            //	$where.=" and rf_year = '".$rf_year."'";
+            //}
+            //if($their_garden!="")
+            //{
+            //	$where.=" and their_garden = '".$their_garden."'";	
+            //}
+               
             $total = Db::getOne($this->sql->getYearassessmodularCount($where));
             $list = Db::query($this->sql->getYearassessmodularList($where,$sort,$order,$offset,$limit));
             $result = array("total" => $total['total'], "rows" => $list);
             Log::write("----------------------------------1-------------------------------------");
-            Log::record($result,'info',true);
+            Log::record($where,'info',true);
             Log::write("----------------------------------1-------------------------------------");
             return json($result);
         }
@@ -50,35 +66,6 @@ class Yearassessmodular extends Backend
         return $this->view->fetch();
     }
 
-    /**
-     * 添加
-     */
-    /** 
-    public function add(){
-        var_dump("666666666666666666666666666666666666666666666666666666");
-        if ($this->request->isPost()){
-            $params = $this->request->post("row/a");
-            $params['css_class'] = '';
-            if($params['rf_class'] == '年'){
-                $params['rf_class'] = 'y';
-            }
-            $bool = Db::execute($this->sql->insertYearmodular($params));
-            if($bool){
-                $this->success();
-            }else{
-                $this->error();
-            }
-        }
-        $unit_id = Db::query($this->sql->getSet());
-        $number = config('company.number');
-        $rf_class = config('company.rfClassY');
-        $this->assign('unit_id',$unit_id);
-        $this->assign('number',$number);
-        $this->assign('rf_class',$rf_class);
-        return $this->view->fetch();
-    }
-   
-    */
     
      public function add(){
         if ($this->request->isPost()){

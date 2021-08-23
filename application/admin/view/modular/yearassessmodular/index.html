@@ -10,14 +10,14 @@
 					<div class="form-group">
 				        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">填报年份</label>
 				        <div class="col-xs-12 col-sm-4">
-					          {:build_select('mondata[]', $mondata, $date, ['id'=>'mondata'])}
+					          {:build_select('rf_year', $mondata, $date, ['id'=>'rf_year'])}
 				        </div>
 					</div>
                     
                     <div class="form-group">
                         <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="" style="width: 150px;">所属园区</label>
 				        <div class="col-xs-12 col-sm-4">
-                        <select name="compdata" class="form-control" id="compdata">
+                        <select name="their_garden" class="form-control" id="their_garden">
                             {foreach $compdata as $k => $v}
                             <option value="{$v.id}">{$v.company_park_name}</option>
                             {/foreach}
