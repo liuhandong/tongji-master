@@ -36,7 +36,7 @@ CASE z.is_key WHEN 0 THEN \'待申报\' WHEN 1 THEN \'待校对\' WHEN 2 THEN \'
 FROM zc_year z
 LEFT JOIN zc_admin a ON z.user_id = a.id
 LEFT JOIN zc_company c ON a.company_id = c.id
-%s AND z.is_key = 3',$where);
+%s ',$where);//AND z.is_key = 3
         return $sql;
     }
     public function getUploadList($fa_id)

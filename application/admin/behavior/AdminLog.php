@@ -9,7 +9,7 @@ class AdminLog
     {
         if (request()->isPost())
         {
-            \app\admin\model\AdminLog::record();
+            //\app\admin\model\AdminLog::record();
         }
     }
 

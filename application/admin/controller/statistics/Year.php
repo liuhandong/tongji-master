@@ -300,7 +300,7 @@ class Year extends Backend
     }
     
 	public function getObjData_excel(){
-		$objdata="";
+		$objdata=array();
 		$rows = Db::query($this->sql->getObjRows_execl());
 		foreach ($rows as $k => $v)
 		{

@@ -11,7 +11,7 @@ use app\common\controller\Backend;
 use think\Db;
 use app\admin\sql\yearassessmodularSql;
 use think\Log;
-class Yearassessmodular extends Backend
+class Scoremodular extends Backend
 {
     protected $sql= null;
     protected $searchFields = 'code';

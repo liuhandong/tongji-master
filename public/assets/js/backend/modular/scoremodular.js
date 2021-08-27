@@ -2,6 +2,18 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 
     var Controller = {
         index: function () {
+            // 初始化表格参数配置
+            Table.api.init({
+                search: true,
+                advancedSearch: true,
+                pagination: true,
+                extend: {
+                    index_url: 'modular/scoremodular/index',
+                    add_url: 'modular/scoremodular/add',
+                    edit_url: 'modular/scoremodular/edit',
+                    del_url: 'modular/scoremodular/del'
+                }
+            });
         	//重置
         	$("#reset").click(function(){
         		var date = new Date();
@@ -20,37 +32,24 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 {
                     where+='&their_garden='+$("#their_garden").val();
                 }
-                window.location.href="yearassessmodular/print_excel"+where;	
+                window.location.href="scoremodular/print_excel"+where;	
             });
             
             // 为表格绑定事件
             $("#submit").click(function(){
-                // 初始化表格参数配置
-                Table.api.init({
-                    search: true,
-                    advancedSearch: true,
-                    pagination: true,
-                    extend: {
-                        index_url: 'modular/yearassessmodular/index',
-                        add_url: 'modular/yearassessmodular/add',
-                        edit_url: 'modular/yearassessmodular/edit',
-                        del_url: 'modular/yearassessmodular/del'
-                    }
-                });
+
                 
                 var table = $("#table");
                 
                var aoColumnsShow = [];
              
-               aoColumnsShow[0] = {field: 'id', title: '填报单位'};
-               aoColumnsShow[1] = {field: 'name', title: '显示名称'};
-               aoColumnsShow[2] = {field: 'seqn', title: '序号'};
-               aoColumnsShow[3] = {field: 'topic', title: '填报主体'};
-               aoColumnsShow[4] = {field: 'order_no', title: '填报单位'};
-               aoColumnsShow[5] = {field: 'their_garden', title: '所属园区'};
-               aoColumnsShow[6] = {field: 'unit_name', title: '填报单位'};
-               aoColumnsShow[7] = {field: 'rf_year', title: '填表年份'};
-               aoColumnsShow[8] = {field: 'operate', title: __('Operate'), table: table, 
+               aoColumnsShow[0] = {field: 'id', title: 'ID'};
+               aoColumnsShow[1] = {field: 'name', title: '描述'};
+               aoColumnsShow[2] = {field: 'seqn', title: '代码'};
+               aoColumnsShow[3] = {field: 'unit_name', title: '计量单位'};
+               aoColumnsShow[4] = {field: 'order_no', title: '填表类型'};
+               aoColumnsShow[5] = {field: 'their_garden', title: '报表年份'};
+               aoColumnsShow[6] = {field: 'operate', title: __('Operate'), table: table, 
                              buttons: [
                                        {name: 'del',  url: 'video/auth'},
                                        {name: 'edit', url: 'video/auth'}
