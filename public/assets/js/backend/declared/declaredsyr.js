@@ -40,20 +40,21 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                                 classname: 'btn btn-xs btn-warning btn-dialog',
                                 url: 'declared/declaredsyr/uploadlist'
 
-                            },{
-                                name: 'exam',
-                                text: '提交填报',
-                                icon: 'fa fa-list',
-                                classname: 'btn btn-xs btn-warning btn-ajax',
-                                url: 'declared/declaredsyr/tibao',
-                                confirm: '确认提报?',
-                                success: function (data){
-                                    setTimeout(function(){location.reload()},1000);
-                                },
-                                error: function (data) {
-                                    //return false;
-                                }
-                            },{
+                            },//{
+                              //  name: 'exam',
+                              //  text: '提交填报',
+                              //  icon: 'fa fa-list',
+                              //  classname: 'btn btn-xs btn-warning btn-ajax',
+                              //  url: 'declared/declaredsyr/tibao',
+                              //  confirm: '确认提报?',
+                              //  success: function (data){
+                              //      setTimeout(function(){location.reload()},1000);
+                              //  },
+                              //  error: function (data) {
+                              //      //return false;
+                              //  }
+                           // },
+                             {
                                 name: 'kaohe_ed',
                                 text: '导出EXCEL',
                                 icon: 'fa fa-file',

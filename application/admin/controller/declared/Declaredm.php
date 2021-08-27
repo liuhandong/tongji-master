@@ -315,7 +315,7 @@ class Declaredm extends Backend
 	        $rf_id=$v['rf_id'];
 	        $rows = Db::query($this->sql->getTotalList($mon,$admin['company_id'],$rf_id));
 	        $Supplementrows = Db::getOne($this->sql->getMonthSupplement($ids));
-	        $total=0+$v['item_val'];
+	        $total=0+intval($v['item_val']);
 		   foreach($rows as $key=>$val)
 		   {
 		   	$total+=$val['item_val'];

@@ -21,7 +21,7 @@ LEFT JOIN zc_company c ON z.declared_company_id = c.id
     }
 
     public function getDeclaredyList($where,$sort,$order,$offset,$limit){
-        //$sql = sprintf('SELECT zsry.*,zsrf.rf_title,zu.username,zu1.username AS username1 FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsrf.id=zsry.rf_id LEFT JOIN zc_user zu ON zu.id=zsry.op_user_id LEFT JOIN zc_user zu1 ON zu1.id = zsry.chk_user_id  %s    ORDER BY %s %s  LIMIT %d,%d',$where,$sort,$order,$offset,$limit);
+        //$sql = sprintf('SELECT zsry.*,zsrf.name,zu.username,zu1.username AS username1 FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsrf.id=zsry.rf_id LEFT JOIN zc_user zu ON zu.id=zsry.op_user_id LEFT JOIN zc_user zu1 ON zu1.id = zsry.chk_user_id  %s    ORDER BY %s %s  LIMIT %d,%d',$where,$sort,$order,$offset,$limit);
         $sql = sprintf('SELECT z.id,a.nickname,c.company_park_name,z.mon,z.add_time,z.is_key,
 CASE z.is_key WHEN 0 THEN \'待申报\' WHEN 1 THEN \'待校对\' WHEN 2 THEN \'待审批\' WHEN 3 THEN \'已完成\' ELSE \'已完成\' END is_key_name
 FROM zc_year z
@@ -45,13 +45,15 @@ LEFT JOIN zc_company zc ON zy.declared_company_id = zc.id WHERE zy.id = %d', $id
      public function getUploadListCount($fa_id)
     {
 
-        $sql = sprintf("SELECT COUNT(*) AS total FROM zc_swj_upload_files z where  rf_class='r' and fa_id=%d",$fa_id);
+        //$sql = sprintf("SELECT COUNT(*) AS total FROM zc_swj_upload_files z where  rf_class='r' and fa_id=%d",$fa_id);
+        $sql = sprintf("SELECT COUNT(*) AS total FROM zc_swj_assess_upload_files z where  rf_class='r' and fa_id=%d",$fa_id);
         return $sql;
     }
 	
     public function getUploadList($fa_id)
     {
-        $sql = sprintf("SELECT * FROM zc_swj_upload_files z where  rf_class='r' and  fa_id=%d",$fa_id);
+        //$sql = sprintf("SELECT * FROM zc_swj_upload_files z where  rf_class='r' and  fa_id=%d",$fa_id);
+        $sql = sprintf("SELECT * FROM zc_swj_assess_upload_files z where  rf_class='r' and  fa_id=%d",$fa_id);
         return $sql;
     }
     public function getDeclaredy($id){
@@ -105,8 +107,8 @@ LEFT JOIN zc_company zc ON zy.declared_company_id = zc.id WHERE zy.id = %d', $id
     public function getDeclaredyRow($id)
     {
 
-        //$sql = sprintf('SELECT zsry.*,zsrf.rf_title,zsrf.code,zsu.unit_name FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
-        $sql = sprintf('SELECT zsrm.*,zy.mon,zsrf.pid,zsrf.rf_title,zsrf.rf_note,zsrf.code,zsu.unit_name
+        //$sql = sprintf('SELECT zsry.*,zsrf.name,zsrf.seqn,zsu.unit_name FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
+        $sql = sprintf('SELECT zsrm.*,zy.mon,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name
 FROM zc_year_assess_report zsrm
 LEFT JOIN zc_chk_report_form zsrf ON zsrm.rf_id = zsrf.id
 LEFT JOIN zc_year zy ON zy.id = zsrm.fa_id
@@ -116,7 +118,7 @@ LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = %d', $id);
      //编辑查询数据
     public function getDeclaredmRowExcel($id)
     {
-        $sql = sprintf('SELECT zsrm.*,zy.mon,zy.declared_company_id,zsrf.pid,zsrf.rf_title,zsrf.rf_note,zsrf.code,zsu.unit_name
+        $sql = sprintf('SELECT zsrm.*,zy.mon,zy.declared_company_id,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name
 FROM zc_year_assess_report zsrm
 LEFT JOIN zc_chk_report_form zsrf ON zsrm.rf_id = zsrf.id
 LEFT JOIN zc_year zy ON zy.id = zsrm.fa_id
@@ -125,7 +127,7 @@ LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE  zsrf.pid is not null a
     }
    	public function getDeclaredmRowExcelComment($id)
     {
-        $sql = sprintf('SELECT zsrm.*,zy.mon,zy.declared_company_id,zsrf.pid,zsrf.rf_title,zsrf.rf_note,zsrf.code,zsu.unit_name
+        $sql = sprintf('SELECT zsrm.*,zy.mon,zy.declared_company_id,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name
 FROM zc_year_assess_report zsrm
 LEFT JOIN zc_chk_report_form zsrf ON zsrm.rf_id = zsrf.id
 LEFT JOIN zc_year zy ON zy.id = zsrm.fa_id
