@@ -9,7 +9,7 @@ return [
     'orderNo' => '排序',
     'numFlag' => '是否为数据项',
     'theirGarden' => '所属园区',
-    'list1' => '关联报表项目1',
+    'list1' => '关联报表项目',
     'list2' => '关联报表项目2',
     'YearComment' => '项目说明'
 ];

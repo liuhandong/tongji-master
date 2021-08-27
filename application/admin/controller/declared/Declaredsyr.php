@@ -6,6 +6,7 @@ use app\common\controller\Backend;
 use think\Db;
 use app\admin\sql\declaredsyrSql;
 use think\Session;
+use think\Log;
 /**
  * Created by PhpStorm.
  * User: Administrator
@@ -128,11 +129,15 @@ class Declaredsyr extends Backend
             $adata['add_time'] = time();
             $adata['declared_company_id'] = $admin['company_id'];
             $result=Db::getOne($this->sql->checkData($adata['mon'],$adata['declared_company_id']));
+            
+            Log::write("----------------------------------1-------------------------------------");
+            Log::record($params,'info',true);
+            Log::write("----------------------------------1-------------------------------------");
             if($result['total']>0)
             {
             	$this->error("该年已经填报,请核实后重新填报");
             }
-            elseif($params['326']=="")
+            elseif($params['3']=="")
             {
             	$this->error("请填写填报人");
             }
@@ -157,7 +162,7 @@ class Declaredsyr extends Backend
 	            	
 	            }
 	            unset($params['thumb']);
-	            $bool = $this->sql->insertDeclaredy($params);
+	            $bool = $this->sql->insertDeclaredsyr($params);
 	            
 	            for($i=0;$i<count($bool);$i++){
 	                Db::execute($bool[$i]);
@@ -179,7 +184,7 @@ class Declaredsyr extends Backend
      */
     public function getlastyeardata(){
         $mon=$this->request->get("mon");
-        $lastyaer_mon=$mon-1;
+        $lastyaer_mon=intval($mon)-1;
         if($this->request->get("company_id")=="")
         {
         	//$list = Db::query($this->sql->getDeclaredy($this->request->get("id")));

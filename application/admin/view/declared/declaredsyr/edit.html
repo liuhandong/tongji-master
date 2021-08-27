@@ -10,10 +10,10 @@
         {if $v.pid eq '0'}
         {elseif  $v.pid eq ''}
         <div class="form-group">
-        <label for="rf_title" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.rf_title}</label>
+        <label for="name" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.name}</label>
         
         <div class="col-xs-12 col-sm-2">
-	        {if $v.rf_title eq "有限期至"}
+	        {if $v.name eq "有限期至"}
 	        <select name="row[{$v.id}]" class="selectpicker" style="width: 150px;">
                <?php
             	for($i=$st;$i<=$ed;$i++)
@@ -24,7 +24,7 @@
                 }
                 ?>
             </select>
-            {elseif $v.rf_title eq "报出日期"}
+            {elseif $v.name eq "报出日期"}
             	<input type="datetime" class="form-control" style="width: 300px;"  name="row[{$v.id}]" value="{$v.item_val}" placeholder="" readonly="readonly" />
 	        {else}
             <input type="text" class="form-control"  style="width: 300px;"  name="row[{$v.id}]" value="{$v.item_val}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')"/>
@@ -48,8 +48,8 @@
 
         {if $v.pid eq '0'}
             <div class="form-group">
-        <label for="rf_title" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><b>{$v.rf_title}</b></label>
-        <label for="rf_title" class="control-label col-xs-12 col-sm-2"></label>
+        <label for="name" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><b>{$v.name}</b></label>
+        <label for="name" class="control-label col-xs-12 col-sm-2"></label>
        
         <label  class="control-label col-xs-12 col-sm-2"></label>
         <label  class="control-label col-xs-12 col-sm-2"></label>
@@ -61,14 +61,14 @@
         {else}
             <div class="form-group">
              <?php
-         $rf_title=$v['rf_title'];
-         $num=intval(substr($rf_title,0,3));
-         $title=explode($num,$rf_title);
+         $name=$v['name'];
+         $num=intval(substr($name,0,3));
+         $title=explode($num,$name);
          ?>
-        <label for="rf_title" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><?php 
+        <label for="name" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><?php 
         	if($num==0)
        	{
-       		echo $v['rf_title'];
+       		echo $v['name'];
        	}
         	else
         	{
@@ -82,14 +82,14 @@
         
         
         ?></label>
-        <label for="rf_title" class="control-label col-xs-12 col-sm-2">{$v.code}</label>
+        <label for="name" class="control-label col-xs-12 col-sm-2">{$v.seqn}</label>
         <label class="control-label col-xs-12 col-sm-2">{$v.unit_name}</label>
         <div class="col-xs-12 col-sm-2">
             <input type="text" class="form-control" style="width: 100px;" id="month_{$v.rf_id}" name="row[{$v.id}]" value="{$v.item_val}"/>
         </div>
         
-        <label for="rf_title" class="control-label col-xs-12 col-sm-1 lastyear_s" id="lastyear_{$v.rf_id}"></label>
-        <label for="rf_title" class="control-label col-xs-12 col-sm-1" id="growth_{$v.rf_id}"></label>
+        <label for="name" class="control-label col-xs-12 col-sm-1 lastyear_s" id="lastyear_{$v.rf_id}"></label>
+        <label for="name" class="control-label col-xs-12 col-sm-1" id="growth_{$v.rf_id}"></label>
           </div>
         {/if}
         <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
