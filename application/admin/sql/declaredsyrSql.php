@@ -108,11 +108,14 @@ LEFT JOIN zc_company zc ON zy.declared_company_id = zc.id WHERE zy.id = %d', $id
     {
 
         //$sql = sprintf('SELECT zsry.*,zsrf.name,zsrf.seqn,zsu.unit_name FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
-        $sql = sprintf('SELECT zsrm.*,zy.mon,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name
+        $sql = sprintf('SELECT zsrm.*,zy.mon,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name,zcc.company_park_name
 FROM zc_year_assess_report zsrm
 LEFT JOIN zc_chk_report_form zsrf ON zsrm.rf_id = zsrf.id
+LEFT JOIN zc_company zcc ON zsrf.their_garden = zcc.id
 LEFT JOIN zc_year zy ON zy.id = zsrm.fa_id
-LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = %d', $id);
+LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = %d
+ORDER BY zsrm.rf_id
+', $id);
         return $sql;
     }
      //编辑查询数据

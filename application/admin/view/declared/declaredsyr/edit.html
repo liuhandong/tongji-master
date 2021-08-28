@@ -5,6 +5,21 @@
         	$st=date("Y")-2;
         	$ed=date("Y")+2;
         ?>
+<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" style="width: 150px;">{:__('setTime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <select name="row[set_time]" class="selectpicker" style="width: 150px;" id="declareds_time">
+               <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
 	{foreach $row as $k => $v}
     
         {if $v.pid eq '0'}
@@ -37,10 +52,9 @@
     <div class="row headerBackground">
         <div class="col-sm-3">指标</div>
         <div class="col-sm-2">代码</div>
-        <div class="col-sm-2">单位</div>
-        <div class="col-sm-2">本年</div>
-        <div class="col-sm-1">上年同期</div>
-        <div class="col-sm-1">同比增长</div>
+        <div class="col-sm-2">园区填报</div>
+        <div class="col-sm-2">附件上传</div>
+        <div class="col-sm-1">考核主体</div>
         <!--<div class="col-sm-2">5</div>-->
     </div>
     {foreach $row as $k => $v}
@@ -83,37 +97,27 @@
         
         ?></label>
         <label for="name" class="control-label col-xs-12 col-sm-2">{$v.seqn}</label>
-        <label class="control-label col-xs-12 col-sm-2">{$v.unit_name}</label>
         <div class="col-xs-12 col-sm-2">
-            <input type="text" class="form-control" style="width: 100px;" id="month_{$v.rf_id}" name="row[{$v.id}]" value="{$v.item_val}"/>
+            <input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+        
+            <span>
+            <input id="c-thumb{$v.seqn}" class="form-control" size="50" name="row[thumb]" type="hidden" value="" />
+            <button type="button" id="plupload-imagethumb{$v.seqn}" class="btn btn-danger plupload" data-input-id="c-thumb{$v.seqn}" data-multiple="true" data-preview-id="p-thumb{$v.seqn}">
+            <i class="fa fa-upload"></i>上传</button>
+            </span>
+            
         </div>
         
-        <label for="name" class="control-label col-xs-12 col-sm-1 lastyear_s" id="lastyear_{$v.rf_id}"></label>
-        <label for="name" class="control-label col-xs-12 col-sm-1" id="growth_{$v.rf_id}"></label>
+        <label for="name" class="control-label col-xs-12 col-sm-2">{$v.company_park_name}</label>
           </div>
         {/if}
         <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
   
     {/foreach}
-     <div class="form-group">
-		<label for="c-thumb" class="control-label col-xs-12 col-sm-2">附件上传:</label>
-		<div class="col-xs-12 col-sm-8">
-				<div class="input-group">
-					<input id="c-thumb" class="form-control" size="50" name="row[thumb]" type="text" value="" />
-					<div class="input-group-addon no-border no-padding">
-						<span><button type="button" id="plupload-imagethumb" class="btn btn-danger plupload" data-input-id="c-thumb" data-multiple="true" data-preview-id="p-thumb"><i class="fa fa-upload"></i>上传</button></span>
-					</div>
-					<span class="msg-box n-right"></span>
-				</div>
-		        <ul class="row list-inline plupload-preview" id="p-thumb"></ul>
-		</div>
-</div>
-	<div class="form-group">
-		<label class="control-label col-xs-12 col-sm-2" >校验员意见</label>
-		<div class="col-xs-12 col-sm-8">
-		    <textarea rows="4" cols="120" name="" disabled="disabled">{$checkIdea}</textarea>
-		</div>
-	</div>
+
+
 {if $current_company_id eq $project_company_id}
     <div class="form-group hidden layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>

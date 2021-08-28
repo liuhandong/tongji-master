@@ -6,8 +6,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
         	$("#reset").click(function(){
         		var date = new Date();
                 var year = date.getFullYear();
-        		$("#rf_year").selectpicker ("val",year).trigger("change");
-        		$("#their_garden").selectpicker ("val","1").trigger("change");
+        		$("#rf_year").selectpicker ("val","2021");
+        		$("#their_garden").selectpicker ("val","1");
         	});
             
             $("#export_excel").click(function(){
@@ -45,12 +45,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                aoColumnsShow[0] = {field: 'id', title: '填报单位'};
                aoColumnsShow[1] = {field: 'name', title: '显示名称'};
                aoColumnsShow[2] = {field: 'seqn', title: '序号'};
-               aoColumnsShow[3] = {field: 'topic', title: '填报主体'};
-               aoColumnsShow[4] = {field: 'order_no', title: '填报单位'};
-               aoColumnsShow[5] = {field: 'their_garden', title: '所属园区'};
-               aoColumnsShow[6] = {field: 'unit_name', title: '填报单位'};
-               aoColumnsShow[7] = {field: 'rf_year', title: '填表年份'};
-               aoColumnsShow[8] = {field: 'operate', title: __('Operate'), table: table, 
+               aoColumnsShow[3] = {field: 'unit_name', title: '计量单位'};
+               //aoColumnsShow[3] = {field: 'topic', title: '填报主体'};
+               //aoColumnsShow[4] = {field: 'order_no', title: '填报单位'};
+               aoColumnsShow[4] = {field: 'company_pn', title: '所属园区'};               
+               aoColumnsShow[5] = {field: 'rf_year', title: '填表年份'};
+               aoColumnsShow[6] = {field: 'operate', title: __('Operate'), table: table, 
                              buttons: [
                                        {name: 'del',  url: 'video/auth'},
                                        {name: 'edit', url: 'video/auth'}

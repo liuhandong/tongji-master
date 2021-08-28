@@ -105,7 +105,11 @@
         </div>
         <div class="col-xs-12 col-sm-2">
         
-            <span><input id="c-thumb" class="form-control" size="50" name="row[thumb]" type="text" value="" /><button type="button" id="plupload-imagethumb" class="btn btn-danger plupload" data-input-id="c-thumb" data-multiple="true" data-preview-id="p-thumb"><i class="fa fa-upload"></i>上传</button></span>
+            <span>
+            <input id="c-thumb{$v.seqn}" class="form-control" size="50" name="row[thumb]" type="hidden" value="" />
+            <button type="button" id="plupload-imagethumb{$v.seqn}" class="btn btn-danger plupload" data-input-id="c-thumb{$v.seqn}" data-multiple="true" data-preview-id="p-thumb{$v.seqn}">
+            <i class="fa fa-upload"></i>上传</button>
+            </span>
             
         </div>
         <label for="name" class="control-label col-xs-12 col-sm-2">{$v.topic}</label>

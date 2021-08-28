@@ -19,7 +19,7 @@ class yearassessmodularSql
     }
 
     public function getYearassessmodularList($where,$sort,$order,$offset,$limit){
-        $sql = sprintf('SELECT zc_chk_report_form.*,zc_swj_unit.unit_name FROM zc_chk_report_form LEFT JOIN zc_swj_unit ON zc_swj_unit.id = zc_chk_report_form.unit_id %s ORDER BY %s %s  LIMIT %d,%d',$where,$sort,$order,$offset,$limit);
+        $sql = sprintf('SELECT zc_chk_report_form.*,zc_swj_unit.unit_name,zcc.company_park_name as company_pn FROM zc_chk_report_form left join zc_company zcc on zcc.id=zc_chk_report_form.their_garden LEFT JOIN zc_swj_unit ON zc_swj_unit.id = zc_chk_report_form.unit_id %s ORDER BY %s %s  LIMIT %d,%d',$where,$sort,$order,$offset,$limit);
         return $sql;
     }
 

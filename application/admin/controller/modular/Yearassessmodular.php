@@ -56,7 +56,7 @@ class Yearassessmodular extends Backend
             return json($result);
         }
 
-        $mondata=array("2021"=>'2021',"2020"=>'2020',"2019"=>'2019');     
+        $mondata=array("2021"=>'2021',"2020"=>'2020',"2019"=>'2019',"2018"=>'2018');     
         $this->view->assign('mondata', $mondata);
         $this->view->assign('date', $year_now);
         
