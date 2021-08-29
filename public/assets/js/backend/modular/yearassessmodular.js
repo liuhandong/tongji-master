@@ -1,13 +1,15 @@
 define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
 
     var Controller = {
+
         index: function () {
+
         	//重置
         	$("#reset").click(function(){
         		var date = new Date();
                 var year = date.getFullYear();
-        		$("#rf_year").selectpicker ("val","2021");
-        		$("#their_garden").selectpicker ("val","1");
+        		$("#rf_year").val("2021");
+        		$("#their_garden").val("1");
         	});
             
             $("#export_excel").click(function(){
@@ -37,7 +39,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         del_url: 'modular/yearassessmodular/del'
                     }
                 });
-                
                 var table = $("#table");
                 
                var aoColumnsShow = [];
@@ -107,7 +108,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //Table.api.bindevent(table);
             });
            Form.api.bindevent($("form[role=form]"));
-            
+           $(document).ready(function () {
+                $("#submit").click();
+           }); 
         },
         add: function () {
             Form.api.bindevent($("form[role=form]"));

@@ -9,7 +9,7 @@
 namespace app\admin\controller\modular;
 use app\common\controller\Backend;
 use think\Db;
-use app\admin\sql\yearassessmodularSql;
+use app\admin\sql\scoremodularSql;
 use think\Log;
 class Scoremodular extends Backend
 {
@@ -18,7 +18,7 @@ class Scoremodular extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->sql = new yearassessmodularSql();
+        $this->sql = new scoremodularSql();
     }
 
     /**
@@ -56,7 +56,7 @@ class Scoremodular extends Backend
             return json($result);
         }
 
-        $mondata=array("2021"=>'2021',"2020"=>'2020',"2019"=>'2019');     
+        $mondata=array("2021"=>'2021',"2020"=>'2020',"2019"=>'2019',"2018"=>'2018');     
         $this->view->assign('mondata', $mondata);
         $this->view->assign('date', $year_now);
         

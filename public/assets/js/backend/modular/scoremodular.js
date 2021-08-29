@@ -47,8 +47,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                aoColumnsShow[1] = {field: 'name', title: '描述'};
                aoColumnsShow[2] = {field: 'seqn', title: '代码'};
                aoColumnsShow[3] = {field: 'unit_name', title: '计量单位'};
-               aoColumnsShow[4] = {field: 'order_no', title: '填表类型'};
-               aoColumnsShow[5] = {field: 'their_garden', title: '报表年份'};
+               aoColumnsShow[4] = {field: 'report_type', title: '报表类型'};
+               aoColumnsShow[5] = {field: 'rf_year', title: '报表年份'};
                aoColumnsShow[6] = {field: 'operate', title: __('Operate'), table: table, 
                              buttons: [
                                        {name: 'del',  url: 'video/auth'},
@@ -106,6 +106,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 //Table.api.bindevent(table);
             });
            Form.api.bindevent($("form[role=form]"));
+           $(document).ready(function () {
+                $("#submit").click();
+           });
             
         },
         add: function () {

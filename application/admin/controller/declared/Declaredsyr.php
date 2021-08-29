@@ -263,258 +263,270 @@ class Declaredsyr extends Backend
     	  
 
  	   $row = Db::getOne($this->sql->getDeclaredy($ids));
-
+     
  	   $CompanyRow=Db::getOne($this->sql->getCompanyRow($row['declared_company_id']));
-
- 	   $ExcelCommentrow = Db::query($this->sql->getDeclaredmRowExcelComment($ids));
- 	   foreach($ExcelCommentrow as $key=>$val)
- 	   {
- 	   	$ExcelCommentarr[$val['rf_title']]=$val['item_val'];
- 	   }
+     
+ 	//   $ExcelCommentrow = Db::query($this->sql->getDeclaredmRowExcelComment($ids));
+ 	//   foreach($ExcelCommentrow as $key=>$val)
+ 	//   {
+ 	//   	$ExcelCommentarr[$val['name']]=$val['item_val'];
+ 	//   }
  	 
         $filename = $CompanyRow['company_park_name']."(".$row['mon'].")年报";
+    //    vendor('PHPExcel.PHPExcel');
+    //    $objPHPExcel = new \PHPExcel();
+    //    //设置保存版本格式
+    //    $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+    //
+    //    //设置打印页面
+	//   //$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+	//   $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+	//   $objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(9);      //字体大小
+	//   $objPHPExcel->getDefaultStyle()->getFont()->setName('仿宋');//字体
+	//   
+	//   //设置默认行高
+	//   $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(18);
+    //    // 合并
+    //    $objPHPExcel->getActiveSheet()->mergeCells('A1:E1');
+    //    $objPHPExcel->getActiveSheet()->mergeCells('A2:E2');
+    //    $objPHPExcel->getActiveSheet()->setCellValue('A1','（二）综合定期报表');
+    //    $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);      
+    //    // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->setCellValue('A2','大连市开发区（园区）统计年报表');
+    //    $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);    
+    //    // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);  
+    //
+	//   $objPHPExcel->getActiveSheet()->setCellValue('D3','表    号：');
+	//    // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('D3')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('D3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+    //     
+	//   $objPHPExcel->getActiveSheet()->setCellValue('E3','大开统2表');
+	//   // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('E3')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('E3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+    //     $objPHPExcel->getActiveSheet()->setCellValue('D4','制定机关：');
+	//    // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('D4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('D4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+    //     
+	//   $objPHPExcel->getActiveSheet()->setCellValue('E4','大连市商务局');
+	//   // 设置垂直居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('E4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    // 设置水平居中
+    //    $objPHPExcel->getActiveSheet()->getStyle('E4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+	//   $objPHPExcel->getActiveSheet()->setCellValue('A5','开发区（园区）代码：'.$CompanyRow['company_code']);
+	//   $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+	//   $objPHPExcel->getActiveSheet()->setCellValue('A6','开发区（园区）名称：'.$CompanyRow['company_park_name']);
+	//   $objPHPExcel->getActiveSheet()->getStyle('A6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+    //
+	//   $objPHPExcel->getActiveSheet()->mergeCells('B6:C6');
+    //    $objPHPExcel->getActiveSheet()->setCellValue('B6',$row['mon']."年");
+    //    $objPHPExcel->getActiveSheet()->setCellValue('D5','批准文号：');
+    //    $objPHPExcel->getActiveSheet()->getStyle('D5')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
+    //    $objPHPExcel->getActiveSheet()->getStyle('D5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+    //
+	//   $objPHPExcel->getActiveSheet()->setCellValue('E5',$CompanyRow['company_approval_symbol']);
+    //    $objPHPExcel->getActiveSheet()->getStyle('E5')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('E5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //    
+    //    $objPHPExcel->getActiveSheet()->setCellValue('D6','有效期至：');
+    //    $objPHPExcel->getActiveSheet()->getStyle('D6')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
+    //    $objPHPExcel->getActiveSheet()->getStyle('D6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+    //    
+    //    $objPHPExcel->getActiveSheet()->setCellValue('E6',$ExcelCommentarr['有限期至']."年");
+    //    $objPHPExcel->getActiveSheet()->getStyle('E6')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('E6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+    //    $objPHPExcel->getActiveSheet()->setCellValue('A8','指    标');
+    //    $objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	//   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+    //   
+    //   
+	//   
+    //
+    //    $objPHPExcel->getActiveSheet()->setCellValue('B8','代码');
+    //    $objPHPExcel->getActiveSheet()->getStyle('B8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('B8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+    //    $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+    //   
+    //
+    //    $objPHPExcel->getActiveSheet()->setCellValue('C8','单位');
+    //    $objPHPExcel->getActiveSheet()->getStyle('C8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('C8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+    //   
+    //    
+    //     
+    //    $objPHPExcel->getActiveSheet()->setCellValue('D8','本 年');
+    //    $objPHPExcel->getActiveSheet()->getStyle('D8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('D8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+    //     $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+    //   
+    //
+    //    
+    //    $objPHPExcel->getActiveSheet()->setCellValue('E8','上年同期');
+    //    $objPHPExcel->getActiveSheet()->getStyle('E8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+    //    $objPHPExcel->getActiveSheet()->getStyle('E8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+    //
+    //    $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//
+    //   
+	//  
+    //   
+    //    $row = Db::query($this->sql->getDeclaredmRowExcel($ids));
+    //   
+	//   $count=count($row);
+	//   for($i=0;$i<$count;$i++)
+	//   {
+	//   	   if($row[$i]['unit_name']!="无")
+	//   	   {
+	//   	   	   $mon=$row[$i]['mon'];
+	//   	   	   $lastyaer_mon=$mon-1;
+	//        	   $company_id = $row[$i]['declared_company_id'];//
+	//        	   //echo $this->sql->getLastYearList($lastyaer_mon,$company_id,$row[$i]['rf_id']);
+	//        	   $lastyearrow = Db::getOne($this->sql->getLastYearList($lastyaer_mon,$company_id,$row[$i]['rf_id']));
+    //
+	//   	   	    $name=$row[$i]['name'];
+	//	        $num=intval(substr($name,0,3));
+	//	        $title=explode($num,$name);	
+	//	        $title_space="";
+	//		   if($num==0)
+	//	       	{
+	//	       		$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+9),str_replace('&nbsp;',' ',$row[$i]['name']));
+	//	       	}
+	//	        	else
+	//	        	{
+	//	        		for($w=0;$w<$num;$w++)
+	//	        		{
+	//	        			$title_space.=" ";
+	//	        		}
+	//	        		$title_space=$title_space.$title[1];
+	//	        		$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+9),$title_space); 
+	//	        	}
+	//	        	
+	//
+	//	        $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//	        if($row[$i]['pid']=="0")
+	//	        {
+	//	        		$objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getFont()->setBold(true);      //第一行是否加粗
+	//	        }
+	//	       
+	//		   
+	//	
+	//	        $objPHPExcel->getActiveSheet()->setCellValue('B'.($i+9),$row[$i]['seqn']);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	//	
+	//	        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//	       
+	//		    if($row[$i]['pid']=="0")
+	//	        {
+	//	        	$objPHPExcel->getActiveSheet()->setCellValue('C'.($i+9),"");
+	//	        }
+	//	        else
+	//	        {
+	//	        	 $objPHPExcel->getActiveSheet()->setCellValue('C'.($i+9),$row[$i]['unit_name']);
+	//	        }
+	//	        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//	       
+	//	        
+	//	         
+	//	        $objPHPExcel->getActiveSheet()->setCellValue('D'.($i+9),$row[$i]['item_val']);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	//	
+	//	         $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//	       
+	//		 // print_r($lastyearrow);
+	//	        if(isset($lastyearrow['item_val']))
+	//	        {
+	//	        	$objPHPExcel->getActiveSheet()->setCellValue('E'.($i+9),$lastyearrow['item_val']);
+	//	        }
+	//	        else
+	//	        {
+	//	        	$objPHPExcel->getActiveSheet()->setCellValue('E'.($i+9),"");
+	//	        }
+	//	        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	//	        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//		   $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
+	//   	   }
+	//   }
+	//    $objPHPExcel->getActiveSheet()->mergeCells('A'.($count+10).':E'.($count+10));
+	//    $objPHPExcel->getActiveSheet()->setCellValue('A'.($count+10),"单位负责人：".$ExcelCommentarr['单位负责人']."                           填表人：".$ExcelCommentarr['填报人']."                   报出日期：".$ExcelCommentarr['报出日期']);
+    //
+	//    $objPHPExcel->getActiveSheet()->mergeCells('A'.($count+11).':E'.($count+11));
+	//    $objPHPExcel->getActiveSheet()->setCellValue('A'.($count+11),"说明：".$ExcelCommentarr['说明']);
+	//   
+    //
+    //    // 设置页面边距为0.5厘米 (1英寸 = 2.54厘米)
+	//	//$margin = 1.78 / 2.54;   //phpexcel 中是按英寸来计算的,所以这里换算了一下
+	//	//$marginright = 1 / 2.54;   //phpexcel 中是按英寸来计算的,所以这里换算了一下
+	//	//$objPHPExcel->getActiveSheet()->getPageMargins()->setLeft($margin);      //左
+	//	//$objPHPExcel->getActiveSheet()->getPageMargins()->setRight(marginright);    //右
+    //    
+    //    //设置单元格宽度
+    //    $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(55);
+    //    $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(5);
+    //    $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+    //    $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+    //    $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
+    
+        //$PHPReader = new \PHPExcel_Reader_Excel5();
+        $filePath = "../public/xlxsfiles/Tmpl0000.xlsx" ;
+        //$objPHPExcel = $PHPReader->load($filePath);
+        
+        $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+        $objPHPExcel = $objReader ->load($filePath,$encode='utf-8');
+        
         vendor('PHPExcel.PHPExcel');
-        $objPHPExcel = new \PHPExcel();
+        //$objPHPExcel = new \PHPExcel();
         //设置保存版本格式
         $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
- 
-        //设置打印页面
-	   //$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-	   $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
-	   $objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(9);      //字体大小
-	   $objPHPExcel->getDefaultStyle()->getFont()->setName('仿宋');//字体
-	   
-	   //设置默认行高
-	   $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(18);
-        // 合并
-        $objPHPExcel->getActiveSheet()->mergeCells('A1:E1');
-        $objPHPExcel->getActiveSheet()->mergeCells('A2:E2');
-        $objPHPExcel->getActiveSheet()->setCellValue('A1','（二）综合定期报表');
-        $objPHPExcel->getActiveSheet()->getStyle('A1')->getFont()->setSize(14);      
-        // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $objPHPExcel->getActiveSheet()->setCellValue('A2','大连市开发区（园区）统计年报表');
-        $objPHPExcel->getActiveSheet()->getStyle('A2')->getFont()->setSize(14);    
-        // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('A2')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);  
-
-	   $objPHPExcel->getActiveSheet()->setCellValue('D3','表    号：');
-	    // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('D3')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('D3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-         
-	   $objPHPExcel->getActiveSheet()->setCellValue('E3','大开统2表');
-	   // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('E3')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('E3')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-         $objPHPExcel->getActiveSheet()->setCellValue('D4','制定机关：');
-	    // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('D4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('D4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-         
-	   $objPHPExcel->getActiveSheet()->setCellValue('E4','大连市商务局');
-	   // 设置垂直居中
-        $objPHPExcel->getActiveSheet()->getStyle('E4')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        // 设置水平居中
-        $objPHPExcel->getActiveSheet()->getStyle('E4')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-	   $objPHPExcel->getActiveSheet()->setCellValue('A5','开发区（园区）代码：'.$CompanyRow['company_code']);
-	   $objPHPExcel->getActiveSheet()->getStyle('A5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-	   $objPHPExcel->getActiveSheet()->setCellValue('A6','开发区（园区）名称：'.$CompanyRow['company_park_name']);
-	   $objPHPExcel->getActiveSheet()->getStyle('A6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-
-	   $objPHPExcel->getActiveSheet()->mergeCells('B6:C6');
-        $objPHPExcel->getActiveSheet()->setCellValue('B6',$row['mon']."年");
-        $objPHPExcel->getActiveSheet()->setCellValue('D5','批准文号：');
-        $objPHPExcel->getActiveSheet()->getStyle('D5')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
-        $objPHPExcel->getActiveSheet()->getStyle('D5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-
-	   $objPHPExcel->getActiveSheet()->setCellValue('E5',$CompanyRow['company_approval_symbol']);
-        $objPHPExcel->getActiveSheet()->getStyle('E5')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('E5')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        
-        $objPHPExcel->getActiveSheet()->setCellValue('D6','有效期至：');
-        $objPHPExcel->getActiveSheet()->getStyle('D6')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_TOP);
-        $objPHPExcel->getActiveSheet()->getStyle('D6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
-        
-        $objPHPExcel->getActiveSheet()->setCellValue('E6',$ExcelCommentarr['有限期至']."年");
-        $objPHPExcel->getActiveSheet()->getStyle('E6')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('E6')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-        $objPHPExcel->getActiveSheet()->setCellValue('A8','指    标');
-        $objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('A8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('A8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-       
-       
-	   
-
-        $objPHPExcel->getActiveSheet()->setCellValue('B8','代码');
-        $objPHPExcel->getActiveSheet()->getStyle('B8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('B8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-        $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('B8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-       
-
-        $objPHPExcel->getActiveSheet()->setCellValue('C8','单位');
-        $objPHPExcel->getActiveSheet()->getStyle('C8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('C8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('C8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-       
-        
-         
-        $objPHPExcel->getActiveSheet()->setCellValue('D8','本 年');
-        $objPHPExcel->getActiveSheet()->getStyle('D8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('D8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-         $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('D8')->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-       
-
-        
-        $objPHPExcel->getActiveSheet()->setCellValue('E8','上年同期');
-        $objPHPExcel->getActiveSheet()->getStyle('E8')->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-        $objPHPExcel->getActiveSheet()->getStyle('E8')->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-        $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   $objPHPExcel->getActiveSheet()->getStyle('E8')->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	
-       
-	  
-       
-        $row = Db::query($this->sql->getDeclaredmRowExcel($ids));
-       
-	   $count=count($row);
-	   for($i=0;$i<$count;$i++)
-	   {
-	   	   if($row[$i]['unit_name']!="无")
-	   	   {
-	   	   	   $mon=$row[$i]['mon'];
-	   	   	   $lastyaer_mon=$mon-1;
-	        	   $company_id = $row[$i]['declared_company_id'];//
-	        	   //echo $this->sql->getLastYearList($lastyaer_mon,$company_id,$row[$i]['rf_id']);
-	        	   $lastyearrow = Db::getOne($this->sql->getLastYearList($lastyaer_mon,$company_id,$row[$i]['rf_id']));
-
-	   	   	    $rf_title=$row[$i]['rf_title'];
-		        $num=intval(substr($rf_title,0,3));
-		        $title=explode($num,$rf_title);	
-		        $title_space="";
-			   if($num==0)
-		       	{
-		       		$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+9),str_replace('&nbsp;',' ',$row[$i]['rf_title']));
-		       	}
-		        	else
-		        	{
-		        		for($w=0;$w<$num;$w++)
-		        		{
-		        			$title_space.=" ";
-		        		}
-		        		$title_space=$title_space.$title[1];
-		        		$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+9),$title_space); 
-		        	}
-		        	
-	
-		        $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
-			   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-		        if($row[$i]['pid']=="0")
-		        {
-		        		$objPHPExcel->getActiveSheet()->getStyle('A'.($i+9))->getFont()->setBold(true);      //第一行是否加粗
-		        }
-		       
-			   
-		
-		        $objPHPExcel->getActiveSheet()->setCellValue('B'.($i+9),$row[$i]['code']);
-		        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		
-		        $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('B'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-		       
-			    if($row[$i]['pid']=="0")
-		        {
-		        	$objPHPExcel->getActiveSheet()->setCellValue('C'.($i+9),"");
-		        }
-		        else
-		        {
-		        	 $objPHPExcel->getActiveSheet()->setCellValue('C'.($i+9),$row[$i]['unit_name']);
-		        }
-		        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('C'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-		       
-		        
-		         
-		        $objPHPExcel->getActiveSheet()->setCellValue('D'.($i+9),$row[$i]['item_val']);
-		        $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		
-		         $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('D'.($i+9))->getBorders()->getRight()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-		       
-			 // print_r($lastyearrow);
-		        if(isset($lastyearrow['item_val']))
-		        {
-		        	$objPHPExcel->getActiveSheet()->setCellValue('E'.($i+9),$lastyearrow['item_val']);
-		        }
-		        else
-		        {
-		        	$objPHPExcel->getActiveSheet()->setCellValue('E'.($i+9),"");
-		        }
-		        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-		        $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getTop()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getBottom()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-			   $objPHPExcel->getActiveSheet()->getStyle('E'.($i+9))->getBorders()->getLeft()->setBorderStyle(\PHPExcel_Style_Border::BORDER_THIN);
-	   	   }
-	   }
-	    $objPHPExcel->getActiveSheet()->mergeCells('A'.($count+10).':E'.($count+10));
-	    $objPHPExcel->getActiveSheet()->setCellValue('A'.($count+10),"单位负责人：".$ExcelCommentarr['单位负责人']."                           填表人：".$ExcelCommentarr['填报人']."                   报出日期：".$ExcelCommentarr['报出日期']);
-
-	    $objPHPExcel->getActiveSheet()->mergeCells('A'.($count+11).':E'.($count+11));
-	    $objPHPExcel->getActiveSheet()->setCellValue('A'.($count+11),"说明：".$ExcelCommentarr['说明']);
-	   
-
-        // 设置页面边距为0.5厘米 (1英寸 = 2.54厘米)
-		//$margin = 1.78 / 2.54;   //phpexcel 中是按英寸来计算的,所以这里换算了一下
-		//$marginright = 1 / 2.54;   //phpexcel 中是按英寸来计算的,所以这里换算了一下
-		//$objPHPExcel->getActiveSheet()->getPageMargins()->setLeft($margin);      //左
-		//$objPHPExcel->getActiveSheet()->getPageMargins()->setRight(marginright);    //右
-        
-        //设置单元格宽度
-        $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(55);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(5);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(15);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(15);
-        $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(15);
         
         header("Pragma: public");
         header("Expires: 0");
