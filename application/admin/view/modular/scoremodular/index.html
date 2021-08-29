@@ -29,15 +29,15 @@
                     <div id="toolbar" class="toolbar">				    
                         {:build_toolbar('refresh,add')}
                         <input type="button" class="btn btn-success btn-embossed" id="submit" value="{:__('Search')}" />
-                        <input type="reset" class="btn btn-default btn-embossed" id="reset" value="{:__('Reset')}" />
-                        <input type="button" class="btn btn-warning btn-embossed" id="export_excel" value="导出EXCEL" />
+                        <!--<input type="reset" class="btn btn-default btn-embossed" id="reset" value="{:__('Reset')}" />
+                        <input type="button" class="btn btn-warning btn-embossed" id="export_excel" value="导出EXCEL" />-->
                     </div>
 				    </form>
                     
                     
                     <table id="table" class="table table-striped table-bordered table-hover"
-                           data-operate-edit="{:$auth->check('modular/yearassessmodular/edit')}"
-                           data-operate-del="{:$auth->check('modular/yearassessmodular/del')}"
+                           data-operate-edit="{:$auth->check('modular/scoremodular/edit')}"
+                           data-operate-del="{:$auth->check('modular/scoremodular/del')}"
                            width="100%">
                     </table>
                 </div>

@@ -84,17 +84,17 @@
             </select>
         </div>
     </div>
-    
+   <!-- rf_class   {:__('list1')}-->
     <div class="form-group">
-        <label class="control-label col-xs-12 col-sm-2">{:__('list1')}:</label>
+        <label class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
-            <select name="row[rf_class]" class="selectpicker" style="width: 150px;">
+            <select name="row[rf_class]" class="selectpicker" id="select1" style="width: 150px;">
                 <option value="0">无</option>
                 <option value="1">月</option>
                 <option value="2">季</option>
                 <option value="3">年</option>
             </select>
-            <select name="row[rf_class]" class="selectpicker" style="width: 150px;">
+            <select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;">
                 {volist name="list1" id="data"}
                 <option value="{$data}">{$data}</option>
                 {/volist}
@@ -116,3 +116,44 @@
         </div>
     </div>
 </form>
+<script type="text/javascript" charset="utf-8" src="/assets/libs/jquery/dist/jquery.min.js"></script>
+<script>
+     $(function(){
+       $("#select1").change(function(){
+          //if($("#select1 option:checked" ).val == 1){
+           alert("提交");
+           alert($("#select1 option:checked" ).val());
+            $.ajax({
+                type: "GET",
+                url: "modular/yearassessmodular/index",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data:{
+                    "number" : $("#select1 option:checked" ).val()
+                },
+                dataType: "json",
+                success: function(data) {   //返回的结果
+                    alert("提交" + JSON.stringify(data));
+                },
+        
+                error: function(data) {
+                    alert("提交失败" + JSON.stringify(data));
+                }
+            });
+          //}
+         });
+       });
+       //$.ajax({
+       //      type: "GET",
+       //      url: "https://p.3.cn/prices/mgets",
+       //      contentType: "application/x-www-form-urlencoded;charset=utf-8",
+       //      data:{},
+       //      dataType: "json",
+       //      success: function(data) {   //返回的结果
+       //          alert("提交" + JSON.stringify(data));
+       //      },
+       //
+       //      error: function(data) {
+       //          alert("提交失败" + JSON.stringify(data));
+       //      }
+       //   });
+</script>
