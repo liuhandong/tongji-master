@@ -43,45 +43,29 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			//}
 			else
 			{
-				$.ajax({url:"assessment/yearranking/getLastYearDeclaredsList",success:function(result){
-					alert();
-					Table.api.init({
+				Table.api.init({
 						extend: {
 							index_url: 'assessment/yearranking/index',
-							//edit_url: 'statistics/month/edit'
+							edit_url: 'assessment/yearranking/edit'
 						
 						}
 					});	
 					var table = $("#table");
-					  var objdata=$("#objdata").val();
-					  alert(objdata);
-					  arr=objdata.toString().split(',');//注split可以用字符或字符串分割
+
 					  var aoColumnsShow = [];
-					  if(objdata.indexOf("999") != -1)
-					  {
-					  	
-						 i=0;
-						  $.each(result,function (key,value) {
-						  	
-						  	 aoColumnsShow[i+2] = {field: "f"+key, title: value,width:140,valign:'middle',align:'center'};
-						  	 i++;
-					          
-					        });
-					  }
-					  else
-					  {
-						  for(var i=0;i<arr.length;i++)
-						  {
-						  	aoColumnsShow[i+2] = {field: "f"+arr[i], title: result[arr[i]],width:140,valign:'middle',align:'center',sortable: true};
-							//alert(1111);
-						  }
-					  }
-					  aoColumnsShow[0] = {field: 'mon', title: '考核时间',width:80,sortable: false};
-				      aoColumnsShow[1] = {field: 'company_park_name', title: '被考核单位',width:160,sortable: false};
-					  aoColumnsShow[2] = {field: 'mon', title: '考核总分',width:80,sortable: false};
-					  aoColumnsShow[3] = {field: 'mon', title: '排名',width:80,sortable: false};
-					  aoColumnsShow[4] = {field: 'mon', title: '状态',width:80,sortable: false};
-					  aoColumnsShow[5] = {field: 'mon', title: '操作',width:80,sortable: false};
+					  
+					  aoColumnsShow[0] = {field: 'time', title: '考核时间',sortable: false};
+				      aoColumnsShow[1] = {field: 'company_name', title: '被考核单位',sortable: false};
+					  aoColumnsShow[2] = {field: 'score', title: '考核总分',sortable: false};
+					  aoColumnsShow[3] = {field: 'ranking', title: '排名',sortable: false};
+					  aoColumnsShow[4] = {field: 'status', title: '状态',sortable: false};
+					  //aoColumnsShow[5] = {field: 'operate', title: '操作',width:80,sortable: false};
+					  aoColumnsShow[5] = {field: 'operate', title: __('Operate'), table: table, 
+                             buttons: [
+                                       {name: 'del',  url: 'video/auth'},
+                                       {name: 'edit', url: 'video/auth'}
+                                     ], 
+                        events: Table.api.events.operate, formatter: Table.api.formatter.operate};
 				      
 			             table.bootstrapTable('destroy'); 
 			            // 初始化表格
@@ -97,9 +81,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
 			            });
 			            // 为表格绑定事件
 		            	 Table.api.bindevent(table);
-				}});
-				
-				//alert("11111");
 			}
 		   });
 		  Form.api.bindevent($("form[role=form]"));

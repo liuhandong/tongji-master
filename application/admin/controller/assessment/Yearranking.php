@@ -67,68 +67,76 @@ class Yearranking extends Backend
             
            
             
-            $total = Db::getOne($this->sql->getDeclaredyCount($where));
-            $list = Db::query($this->sql->getDeclaredExcelList($where));
-            //echo $this->sql->getDeclaredyList($where,$sort,$order,$offset,$limit);
-           
-            $i=0;
-            $fields="";
-            $insertfields="";
-            $insertvalue="";
-            foreach($list as $key=>$val)
-            {
-            	
-            	
-            	
-            	$row = Db::query($this->sql->getDeclaredyRow($val['id']));	
-            	foreach($row as $_k=>$_v)
-            	{
-            		//if($_v['chk_item_val']!="")
-            		//{
-            		//	$list[$key][$_v['rf_id']]=$_v['chk_item_val'];
-            		//}
-            		//else
-            		//{
-            		//	$list[$key][$_v['rf_id']]=$_v['item_val'];
-            		//}
-            		$list[$key][$_v['rf_id']]=$_v['item_val'];
-            		$fields.="f".$_v['rf_id']." VARCHAR(200),";
-            		$insertfields.="f".$_v['rf_id'].",";
-            		$insertvalue.="'".$_v['item_val']."',";
-            	}
-            	if($i=="0")
-            	{
-            		
-            		$CREATETABLE = Db::query("CREATE TEMPORARY TABLE kaohe (
-				mon VARCHAR(50) NOT NULL, 
-				".$fields."
-				company_park_name VARCHAR(50) NOT NULL,
-				declared_company_id VARCHAR(50) NOT NULL
-				);");
-            	}
-           
-            	Db::query("INSERT INTO kaohe(mon,".$insertfields."company_park_name,declared_company_id)VALUES(".$list[$key]['mon'].",".$insertvalue."'".$list[$key]['company_park_name']."','".$list[$key]['declared_company_id']."')");
-            	$insertfields="";
-            	$insertvalue="";
-            	$i++;
-            	
-            }
-            //,$sort,$order,$offset,$limit
-            //echo sprintf("select * from kaohe %s ORDER BY %s %s  LIMIT %d,%d",$where, $sort, $order, $offset, $limit);
-            if(is_numeric($sort))
-            {
-            	$tempsort="f".$sort;
-            }
-            else
-            {
-            	$tempsort=$sort;
-            }
-            if(count($list)>0)
-            {
-	       	$list = Db::query(sprintf("select * from kaohe z %s ORDER BY %s %s  LIMIT %d,%d",$tempwhere,$tempsort, $order, $offset, $limit));
-            }
+            //$total = Db::getOne($this->sql->getDeclaredyCount($where));
+            //$list = Db::query($this->sql->getDeclaredExcelList($where));
+			
+			$list = array();
+			$yearwhat = $this->request->get("mondata");
+			$list[0]=array("time" => $yearwhat,
+							"company_name" => "大连市商务局",
+							"score" => "96",
+							"ranking" => "1",
+							"status" => "已完成",
+							);
+						$list[1]=array("time" => $yearwhat,
+							"company_name" => "大连经济技术开发区",
+							"score" => "95",
+							"ranking" => "2",
+							"status" => "已完成",
+							);
+						$list[2]=array("time" => $yearwhat,
+							"company_name" => "大连长兴岛经济技术开发区",
+							"score" => "92",
+							"ranking" => "3",
+							"status" => "已完成",
+							);
+						$list[3]=array("time" => $yearwhat,
+							"company_name" => "大连保税区",
+							"score" => "91",
+							"ranking" => "4",
+							"status" => "已完成",
+							);
+						$list[4]=array("time" => $yearwhat,
+							"company_name" => "旅顺经济技术开发区",
+							"score" => "90",
+							"ranking" => "5",
+							"status" => "已完成",
+							);
+										$list[5]=array("time" => $yearwhat,
+							"company_name" => "大连高新技术产业园区",
+							"score" => "89",
+							"ranking" => "6",
+							"status" => "已完成",
+							);
+										$list[6]=array("time" => $yearwhat,
+							"company_name" => "大连金石滩国家旅游度假区",
+							"score" => "88",
+							"ranking" => "7",
+							"status" => "已完成",
+							);
+										$list[7]=array("time" => $yearwhat,
+							"company_name" => "大连普湾经济区",
+							"score" => "77",
+							"ranking" => "8",
+							"status" => "已完成",
+							);
+										$list[8]=array("time" => $yearwhat,
+							"company_name" => "大连金州湾临空经济区",
+							"score" => "76",
+							"ranking" => "9",
+							"status" => "已完成",
+							);
+										$list[9]=array("time" => $yearwhat,
+							"company_name" => "大连湾临海装备制造业聚集区",
+							"score" => "66",
+							"ranking" => "10",
+							"status" => "已完成",
+							);
+							
+            
+
             //echo sprintf("select * from kaohe %s ORDER BY %s %s  LIMIT %d,%d",$tempwhere,$tempsort, $order, $offset, $limit);
-            $result = array("total" => $total['total'], "rows" => $list);
+            $result = array("total" => 10, "rows" => $list);
             return json($result);
         }
         $companydata = [];
