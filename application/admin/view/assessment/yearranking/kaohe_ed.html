@@ -1,0 +1,218 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="row headerBackground">
+        <div class="col-sm-3">考核项目</div>
+        <div class="col-sm-2">申报时间</div>
+        <div class="col-sm-2">准确率</div>
+        <div class="col-sm-3 clearfix">
+            <div style="width: 80px;" class="pull-left">满分值</div>
+            <div style="width: 80px;" class="pull-left">评分</div>
+        </div>
+        <!--<div class="col-sm-2">5</div>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >一月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m01.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m01.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m01]" value="{$row.m01|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >二月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m02.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m02.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m02]" value="{$row.m02|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >三月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m03.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m03.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m03]" value="{$row.m03|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >四月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m04.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m04.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m04]" value="{$row.m04|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >五月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m05.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m05.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m05]" value="{$row.m05|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >六月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m06.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m06.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m06]" value="{$row.m06|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >七月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m07.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m07.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m07]" value="{$row.m07|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >八月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m08.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m08.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m08]" value="{$row.m08|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >九月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m09.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m09.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m09]" value="{$row.m09|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >十月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m10.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m10.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m10]" value="{$row.m10|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >十一月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m11.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m11.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m11]" value="{$row.m11|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >十二月报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m12.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$mlist.m12.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[m12]" value="{$row.m12|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >一季度报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s01.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s01.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[s01]" value="{$row.s01|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >二季度报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s02.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s02.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[s02]" value="{$row.s02|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >三季度报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s03.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s03.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[s03]" value="{$row.s03|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >四季度报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s04.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$slist.s04.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="5" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[s04]" value="{$row.s04|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >年度报表</label>
+        <label class="control-label col-xs-12 col-sm-2">{$ylist.y01.sb_data??'--'}</label>
+        <label class="control-label col-xs-12 col-sm-2">{$ylist.y01.zhunque}</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="10" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[y01]" value="{$row.y01|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-3" >其他评分</label>
+        <label class="control-label col-xs-12 col-sm-2">--</label>
+        <label class="control-label col-xs-12 col-sm-2">--</label>
+        <div class="col-xs-12 col-sm-3">
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="" value="10" disabled/>
+            <input type="text" class="form-control pull-left" style="width: 60px;"  name="row[qt]" value="{$row.qt|default=0}"/>
+        </div>
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+    </div>
+    <input type="hidden" class="form-control pull-left" style="width: 60px;"  name="row[kaohe_id]" value="{$ids}"/>
+
+
+
+
+
+
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
