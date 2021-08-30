@@ -193,54 +193,54 @@ class Yearranking extends Backend
      * 打印
      */
     public function print_excel($ids = NULL){
-    	  $getObjDataRows=$this->getObjData();
-    	  $objdata = $this->request->get("objdata");
- 	  $objdata_arr=explode(",",$objdata);
+    	  //$getObjDataRows=$this->getObjData();
+    	//  $objdata = $this->request->get("objdata");
+ 	  //$objdata_arr=explode(",",$objdata);
         $filename = "年度考核".time();
-        vendor('PHPExcel.PHPExcel');
-        $objPHPExcel = new \PHPExcel();
+        //vendor('PHPExcel.PHPExcel');
+        //$objPHPExcel = new \PHPExcel();
         //设置保存版本格式
-        $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
+        //$objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
  
         //设置打印页面
-	   $objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
-	   $objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
-	   $objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(9);      //字体大小
-	   $objPHPExcel->getDefaultStyle()->getFont()->setName('仿宋');//字体
+	   //$objPHPExcel->getActiveSheet()->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+	   //$objPHPExcel->getActiveSheet()->getPageSetup()->setPaperSize(\PHPExcel_Worksheet_PageSetup::PAPERSIZE_A4);
+	   //$objPHPExcel->getActiveSheet()->getDefaultStyle()->getFont()->setSize(9);      //字体大小
+	   //$objPHPExcel->getDefaultStyle()->getFont()->setName('仿宋');//字体
 	   
 	   //设置默认行高
-	   $objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(18);
+	   //$objPHPExcel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(18);
 	   //$objPHPExcel->getActiveSheet()->getColumnDimension(\PHPExcel_Cell::stringFromColumnIndex(0))->setAutoSize(true);
-	   $objPHPExcel->getDefaultStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-	   $objPHPExcel->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
-	   $objPHPExcel->getActiveSheet()->setCellValue('A1','报表月份');
-	   $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
-	   $objPHPExcel->getActiveSheet()->setCellValue('B1','申报单位');
-	   $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
-	   $where="where 1=1";
-		$mondata_re = $this->request->get("mondata");
-		$mondata_arr=explode(",",$mondata_re);
-		$mondata="";
-		foreach($mondata_arr as $key=>$val)
-		{
-			$mondata.="'".$val."',";
-		}
-		$mondata=rtrim($mondata,",");
-		$where.=" and z.mon in(".$mondata.")";
+	   //$objPHPExcel->getDefaultStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	   //$objPHPExcel->getDefaultStyle()->getAlignment()->setVertical(\PHPExcel_Style_Alignment::VERTICAL_CENTER);
+	   //$objPHPExcel->getActiveSheet()->setCellValue('A1','报表月份');
+	   //$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+	   //$objPHPExcel->getActiveSheet()->setCellValue('B1','申报单位');
+	   //$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+	   //$where="where 1=1";
+		//$mondata_re = $this->request->get("mondata");
+		//$mondata_arr=explode(",",$mondata_re);
+		//$mondata="";
+		//foreach($mondata_arr as $key=>$val)
+		//{
+		//	$mondata.="'".$val."',";
+		//}
+		//$mondata=rtrim($mondata,",");
+		//$where.=" and z.mon in(".$mondata.")";
 		
 		
-		$companydata = $this->request->get("companydata");
-		if(!strstr($companydata, '999')){ 
-			$where.=" and z.declared_company_id in(".$companydata.")";
-		}
-		$list = Db::query($this->sql->getDeclaredExcelList($where));
+		//$companydata = $this->request->get("companydata");
+		//if(!strstr($companydata, '999')){ 
+		//	$where.=" and z.declared_company_id in(".$companydata.")";
+		//}
+		//$list = Db::query($this->sql->getDeclaredExcelList($where));
 		
-		foreach($list as $key=>$val)
-		{
+		//foreach($list as $key=>$val)
+		//{
 			
-			$row = Db::query($this->sql->getDeclaredyRow($val['id']));	
-			foreach($row as $_k=>$_v)
-			{
+		//	$row = Db::query($this->sql->getDeclaredyRow($val['id']));	
+		//	foreach($row as $_k=>$_v)
+		//	{
 				//if($_v['chk_item_val']!="")
 				//{
 				//	$list[$key][$_v['rf_id']]=$_v['chk_item_val'];
@@ -249,80 +249,98 @@ class Yearranking extends Backend
 				//{
 				//	$list[$key][$_v['rf_id']]=$_v['item_val'];
 				//}
-				$list[$key][$_v['rf_id']]=$_v['item_val'];
-			}
+		//		$list[$key][$_v['rf_id']]=$_v['item_val'];
+		//	}
 			
-		}
+		//}
 		//print_r($list);
-		for($i=0;$i<count($list);$i++)
-		{
-			$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+2),$list[$i]['mon']);
-			$objPHPExcel->getActiveSheet()->setCellValue('B'.($i+2),$list[$i]['company_park_name']);
-			if(!strstr($objdata, '999')){ 
-				for($w=0;$w<count($objdata_arr);$w++)
-				{
-					$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($w+2).($i+2),$list[$i][$objdata_arr[$w]]);
-				}
-				$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($objdata_arr)+2).($i+2),$list[$i]['is_key_name']);
-			}
-			else
-			{
-				$w=0;
-				foreach ($getObjDataRows as $key => $value)
-				{
-					$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($w+2).($i+2),$list[$i][$key]);
-					$w++;
-				}
-				$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($getObjDataRows)+2).($i+2),$list[$i]['is_key_name']);	
-			}
+		//for($i=0;$i<count($list);$i++)
+		//{
+		//	$objPHPExcel->getActiveSheet()->setCellValue('A'.($i+2),$list[$i]['mon']);
+		//	$objPHPExcel->getActiveSheet()->setCellValue('B'.($i+2),$list[$i]['company_park_name']);
+		//	if(!strstr($objdata, '999')){ 
+		//		for($w=0;$w<count($objdata_arr);$w++)
+		//		{
+		//			$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($w+2).($i+2),$list[$i][$objdata_arr[$w]]);
+		//		}
+		//		$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($objdata_arr)+2).($i+2),$list[$i]['is_key_name']);
+		//	}
+		//	else
+		//	{
+		//		$w=0;
+		//		foreach ($getObjDataRows as $key => $value)
+		//		{
+		//			$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($w+2).($i+2),$list[$i][$key]);
+		//			$w++;
+		//		}
+		//		$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($getObjDataRows)+2).($i+2),$list[$i]['is_key_name']);	
+		//	}
 			
-		}
-		if(!strstr($objdata, '999')){ 
-			for($i=0;$i<count($objdata_arr);$i++)
-			{
-				$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($i+2).'1',$getObjDataRows[$objdata_arr[$i]]);
-				$strlen=strlen($getObjDataRows[$objdata_arr[$i]]);
+		//}
+		//if(!strstr($objdata, '999')){ 
+		//	for($i=0;$i<count($objdata_arr);$i++)
+		//	{
+		//		$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($i+2).'1',$getObjDataRows[$objdata_arr[$i]]);
+		//		$strlen=strlen($getObjDataRows[$objdata_arr[$i]]);
+		//		//echo $getObjDataRows[$objdata_arr[$i]];
+		//		//echo $strlen;
+		//		$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr($i+2))->setWidth($strlen);
+		//	}
+		//	$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($objdata_arr)+2).'1','状态');
+		//	$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr(count($objdata_arr)))->setWidth(10);
+		//}else
+		//{
+		//	$i=0;
+		//	foreach ($getObjDataRows as $key => $value)
+		//	{
+		//		$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($i+2).'1',$value);
+		//		$strlen=strlen($value);
 				//echo $getObjDataRows[$objdata_arr[$i]];
 				//echo $strlen;
-				$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr($i+2))->setWidth($strlen);
-			}
-			$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($objdata_arr)+2).'1','状态');
-			$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr(count($objdata_arr)))->setWidth(10);
-		}else
-		{
-			$i=0;
-			foreach ($getObjDataRows as $key => $value)
-			{
-				$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr($i+2).'1',$value);
-				$strlen=strlen($value);
-				//echo $getObjDataRows[$objdata_arr[$i]];
-				//echo $strlen;
-				$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr($i+2))->setWidth($strlen);
-			}
-			$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($getObjDataRows)+2).'1','状态');
-			$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr(count($getObjDataRows)))->setWidth(10);
-		}
+		//		$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr($i+2))->setWidth($strlen);
+		//	}
+		//	$objPHPExcel->getActiveSheet()->setCellValue($this->inttochr(count($getObjDataRows)+2).'1','状态');
+		//	$objPHPExcel->getActiveSheet()->getColumnDimension($this->inttochr(count($getObjDataRows)))->setWidth(10);
+		//}
 		
-		$styleThinBlackBorderOutline = array(
-			'borders' => array(
-				'allborders' => array( //设置全部边框
-					'style' => \PHPExcel_Style_Border::BORDER_THIN //粗的是thick
-				),
+		//$styleThinBlackBorderOutline = array(
+		//	'borders' => array(
+		//		'allborders' => array( //设置全部边框
+			//		'style' => \PHPExcel_Style_Border::BORDER_THIN //粗的是thick
+			//	),
 			
-			),
-		);
-    	   if(!strstr($objdata, '999')){ 
-    	   	$end=$this->inttochr(count($objdata_arr)+2).(count($list)+1);
-	   }
-	   else
-	   {
-	   	$end=$this->inttochr(count($getObjDataRows)+2).(count($list)+1);
-	   }
-    	  $objPHPExcel->getActiveSheet()->getStyle( 'A1:'.$end)->applyFromArray($styleThinBlackBorderOutline);
+			//),
+		//);
+    	 //  if(!strstr($objdata, '999')){ 
+    	 //  	$end=$this->inttochr(count($objdata_arr)+2).(count($list)+1);
+	   //}
+	   //else
+	   //{
+	   //	$end=$this->inttochr(count($getObjDataRows)+2).(count($list)+1);
+	   //}
+    	//  $objPHPExcel->getActiveSheet()->getStyle( 'A1:'.$end)->applyFromArray($styleThinBlackBorderOutline);
     	  //$objPHPExcel->getActiveSheet()->getStyle( 'A1:F5')->applyFromArray($styleThinBlackBorderOutline);
 
         //设置单元格宽度
         
+        //header("Pragma: public");
+        //header("Expires: 0");
+        //header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
+        //header("Content-Type:application/force-download");
+        //header("Content-Type:application/vnd.ms-execl");
+        //header("Content-Type:application/octet-stream");
+        //header("Content-Type:application/download");
+        //header('Content-Disposition:attachment;filename='.$filename.'.xls');
+        //header("Content-Transfer-Encoding:binary");
+        //$objWriter->save('php://output');
+		$filePath = "../public/xlxsfiles/Tmpl0009.xlsx" ;
+        $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+        $objPHPExcel = $objReader ->load($filePath,$encode='utf-8');
+        
+        vendor('PHPExcel.PHPExcel');
+        //$objPHPExcel = new \PHPExcel();
+        //设置保存版本格式
+        $objWriter = new \PHPExcel_Writer_Excel5($objPHPExcel);
         header("Pragma: public");
         header("Expires: 0");
         header("Cache-Control:must-revalidate, post-check=0, pre-check=0");
