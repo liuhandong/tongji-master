@@ -1,0 +1,134 @@
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+<input type="hidden" value="{$ids}" id="edit_id">
+	<?php
+        	$nd=date("Y");
+        	$st=date("Y")-2;
+        	$ed=date("Y")+2;
+        ?>
+<div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2" style="width: 150px;">{:__('setTime')}:</label>
+        <div class="col-xs-12 col-sm-4">
+            <select name="row[set_time]" class="selectpicker" style="width: 150px;" id="declareds_time" disabled="disabled">
+               <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$nd){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+	{foreach $row as $k => $v}
+    
+        {if $v.pid eq '0'}
+        {elseif  $v.pid eq ''}
+        <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-2" title="{$v.rf_note}" style="width: 150px;">{$v.name}</label>
+        
+        <div class="col-xs-12 col-sm-2">
+	        {if $v.name eq "有限期至"}
+	        <select name="row[{$v.id}]" class="selectpicker" style="width: 150px;" disabled="disabled">
+               <?php
+            	for($i=$st;$i<=$ed;$i++)
+            	{
+            	?>
+                <option value="<?php echo $i;?>" <?php if($i==$v['item_val']){ echo "selected";}?>><?php echo $i;?>年</option>
+                <?php
+                }
+                ?>
+            </select>
+            {elseif $v.name eq "报出日期"}
+            	<input type="datetime" class="form-control" disabled="disabled" style="width: 300px;"  name="row[{$v.id}]" value="{$v.item_val}" placeholder="" readonly="readonly" />
+	        {else}
+            <input type="text" class="form-control"  style="width: 300px;"   disabled="disabled"  name="row[{$v.id}]" value="{$v.item_val}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')"/>
+            {/if}
+        </div>
+            </div>
+        {/if}
+
+    {/foreach}
+    <div class="row headerBackground">
+        <div class="col-sm-3">指标</div>
+        <div class="col-sm-1">代码</div>
+        <div class="col-sm-2">园区填报</div>
+        <div class="col-sm-1">附件上传</div>
+        <div class="col-sm-2">考核主体</div>
+        <div class="col-sm-2">单项考核分</div>
+    </div>
+    {foreach $row as $k => $v}
+    <input type="hidden" id="declareds_time" value="{$v.mon}">
+
+        {if $v.pid eq '0'}
+            <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><b>{$v.name}</b></label>
+        <label for="name" class="control-label col-xs-12 col-sm-2"></label>
+       
+        <label  class="control-label col-xs-12 col-sm-2"></label>
+        <label  class="control-label col-xs-12 col-sm-2"></label>
+        <label  class="control-label col-xs-12 col-sm-2"></label>
+          </div>
+		{elseif $v.pid eq ''}
+        
+        
+        {else}
+            <div class="form-group">
+             <?php
+         $name=$v['name'];
+         $num=intval(substr($name,0,3));
+         $title=explode($num,$name);
+         ?>
+        <label for="name" class="control-label col-xs-12 col-sm-3"  title="{$v.rf_note}" ><?php 
+        	if($num==0)
+       	{
+       		echo $v['name'];
+       	}
+        	else
+        	{
+        		for($i=0;$i<$num;$i++)
+        		{
+        			echo "&nbsp;";
+        		}
+        		echo $title[1];
+        	}
+        	
+        
+        
+        ?></label>
+        <label for="name" class="control-label col-xs-12 col-sm-1">{$v.seqn}</label>
+        <div class="col-xs-12 col-sm-2">
+            <input type="text" class="form-control" style="width: 100px;" disabled="disabled" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value="400"/>
+        </div>
+        <div class="col-xs-12 col-sm-1">
+        
+            <span>
+            季报.jpg
+            </span>
+            
+        </div>
+        
+        <label for="name" class="control-label col-xs-12 col-sm-2">{$v.company_park_name}</label>
+         <div class="col-xs-12 col-sm-2">
+            <input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        </div>
+          </div>
+        {/if}
+        <!--<label class="control-label col-xs-12 col-sm-2">同比增长</label>-->
+  
+    {/foreach}
+        <div>
+        <label for="name" class="control-label col-xs-12 col-sm-2">考核总分</label>
+         <div class="col-xs-12 col-sm-2">
+            <input type="textarea" class="form-control" style="width: 100px;" id="score_total" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+        </div>
+
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed ">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+
+</form>

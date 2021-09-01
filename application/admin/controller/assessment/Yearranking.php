@@ -4,6 +4,7 @@ namespace app\admin\controller\assessment;
 
 use app\common\controller\Backend;
 use think\Db;
+use think\Session;
 use app\admin\sql\yearrankingSql;
 
 /**
@@ -381,17 +382,52 @@ class Yearranking extends Backend
      * 编辑
      */
     public function edit($ids = NULL){
+           $admin = Session::get('admin');
+        $list = Db::getOne($this->sql->getDeclaredy($ids));
+        $row = Db::query($this->sql->getDeclaredyRow($ids));
         if ($this->request->isPost()){
+
             $params = $this->request->post("row/a");
-            $bool = Db::execute($this->sql->updateScore($params));
-            if($bool){
-                $this->success();
-            }else{
-                $this->error();
-            }
+           //  if($params['thumb']!="")
+           // {
+           // 	$files_arr=explode(",",$params['thumb']);
+           //
+           // 	foreach($files_arr as $key=>$val)
+           // 	{
+           //
+           // 		$files_data['file_path']=$val;
+           // 		$files_data['fa_id']=$ids;
+           //
+           // 		Db::execute($this->sql->insertfiles($files_data));
+           // 	}
+           // }
+           // //print_r($params);exit;
+           // foreach($params as $key=>$item){
+           //     $data['item_val'] = $item;
+           //     $data['id'] = $key;
+           //     $bool = Db::execute($this->sql->updateDeclaredy($data));
+           // }
+            $this->success();
         }
-        $row = Db::getOne($this->sql->getScoreRow($ids));
+        elseif ($this->request->isAjax()){//isAjax
+        	
+		  $title="查看(".$list['mon']." ".$list['company_park_name'].")";
+            $result = array("title"=>$title);
+            return json($result);
+        }
+	   $checkIdea="";
+	   
+	   $ides = Db::query($this->sql->getCheckMessage($ids));
+	   if(!empty($ides))
+	   {
+			$checkIdea=$ides[0]['content'];
+	   }
         $this->view->assign("row", $row);
+        $this->view->assign("ids", $ids);
+        $this->view->assign("checkIdea", $checkIdea);
+        $this->view->assign("current_company_id", $admin['company_id']);
+        $this->view->assign("project_company_id", "");//$list['declared_company_id']
+
         return $this->view->fetch();
     }
 

@@ -59,16 +59,16 @@ LEFT JOIN zc_company c ON a.company_id = c.id
     }
 
     //编辑查询数据
-    public function getDeclaredyRow($id)
-    {
-        //$sql = sprintf('SELECT zsry.*,zsrf.rf_title,zsrf.code,zsu.unit_name FROM zc_swj_report_year zsry LEFT JOIN zc_swj_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
-        $sql = sprintf('SELECT zsrm.*,z.mon,z.declared_company_id,zsrf.pid,zsrf.rf_note,zsrf.rf_title,zsrf.code,zsu.unit_name
-FROM zc_swj_report_year zsrm
-LEFT JOIN zc_year z ON zsrm.fa_id = z.id
-LEFT JOIN zc_swj_report_form zsrf ON zsrm.rf_id = zsrf.id
-LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = %d', $id);
-        return $sql;
-    }
+//    public function getDeclaredyRow($id)
+//    {
+//        //$sql = sprintf('SELECT zsry.*,zsrf.rf_title,zsrf.code,zsu.unit_name FROM zc_swj_report_year zsry LEFT JOIN zc_swj_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
+//        $sql = sprintf('SELECT zsrm.*,z.mon,z.declared_company_id,zsrf.pid,zsrf.rf_note,zsrf.rf_title,zsrf.code,zsu.unit_name
+//FROM zc_swj_report_year zsrm
+//LEFT JOIN zc_year z ON zsrm.fa_id = z.id
+//LEFT JOIN zc_swj_report_form zsrf ON zsrm.rf_id = zsrf.id
+//LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = %d', $id);
+//        return $sql;
+//    }
 
     //编辑查询数据
     public function getDeclaredyRowNew($id)
@@ -81,5 +81,34 @@ LEFT JOIN zc_swj_report_form zsrf ON zsry.rf_id = zsrf.id
 LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id  WHERE zsry.fa_id = %d', $id);
         return $sql;
     }
+    
+    public function getDeclaredy($id){
+        $sql = sprintf('SELECT z.*,c.company_park_name FROM `zc_year` z LEFT JOIN zc_company c ON z.declared_company_id = c.id where z.id=%d', $id);
+        return $sql;
+    }
+    //编辑查询数据
+    public function getDeclaredyRow($id)
+    {
 
+        //$sql = sprintf('SELECT zsry.*,zsrf.name,zsrf.seqn,zsu.unit_name FROM zc_year_assess_report zsry LEFT JOIN zc_chk_report_form zsrf ON zsry.rf_id = zsrf.id LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.id = %d', $id);
+        $sql = sprintf('SELECT zsrm.*,zy.mon,zsrf.pid,zsrf.name,zsrf.rf_note,zsrf.seqn,zsu.unit_name,zcc.company_park_name
+FROM zc_year_assess_report zsrm
+LEFT JOIN zc_chk_report_form zsrf ON zsrm.rf_id = zsrf.id
+LEFT JOIN zc_company zcc ON zsrf.their_garden = zcc.id
+LEFT JOIN zc_year zy ON zy.id = zsrm.fa_id
+LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id WHERE zsrm.fa_id = (select fa_id from zc_year_assess_report group by fa_id limit 1 )
+ORDER BY zsrm.rf_id
+', $id);
+        return $sql;
+    }
+    public function getCheckMessage($id){
+        $sql = sprintf("SELECT * FROM `zs_check_message` WHERE `type` = 'y' AND id='%d'", $id);
+        return $sql;
+    }
+        //添加时 选择的描述
+    public function getDeclaredyRows()
+    {
+        $sql = sprintf('SELECT zsrf.*,zsu.unit_name FROM zc_chk_report_form zsrf LEFT JOIN zc_swj_unit zsu ON zsu.id = zsrf.unit_id  order by order_no asc');
+        return $sql;
+    }
 }
