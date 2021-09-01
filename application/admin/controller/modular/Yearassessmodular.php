@@ -137,10 +137,39 @@ class Yearassessmodular extends Backend
     public function del($ids = NULL){
         $bool = Db::execute($this->sql->delYearassessmodular($ids));
         if($bool){
+            $this->assign('unit_id',$unit_id);
             $this->success();
         }else{
             $this->error();
         }
+    }
+    /**
+     * 关联
+     */
+    public function relation(){
+        $a = $this->request->get("number");
+        //$result = Db::execute($this->sql->selectRelationInfo($a));
+        
+        //if($result){
+        //    $this->success();
+        //}else{
+        //    $this->error();
+        //}
+       $result;
+       switch($a) {
+            case 1:
+              $result = ["111","112"];
+              break;  
+            case 2:
+              $result = ["221","222"];
+              break;
+            case 3:
+              $result = ["331","332"];
+              break;
+            default:
+              $result = ["无"];
+            }
+        return json($result);
     }
     
     /**

@@ -52,4 +52,8 @@ VALUES(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')',$data['n
         $sql = sprintf('SELECT * FROM zc_company');
         return $sql;
     }
+    public function selectRelationInfo($a){
+        $sql = sprintf('SELECT list2 FROM zc_chk_report_form where list1 = \'%s\'',$a);
+        return $sql;
+    }
 }

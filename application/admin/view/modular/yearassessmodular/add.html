@@ -95,9 +95,11 @@
                 <option value="3">年</option>
             </select>
             <select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;">
-                {volist name="list1" id="data"}
+             <!--   {volist name="list1" id="data"}
                 <option value="{$data}">{$data}</option>
-                {/volist}
+                {/volist}-->
+                <option value="1" selected="selected">1</option>
+                <option value="2" >2</option>
             </select>
         </div>
     </div>
@@ -121,18 +123,25 @@
      $(function(){
        $("#select1").change(function(){
           //if($("#select1 option:checked" ).val == 1){
-           alert("提交");
-           alert($("#select1 option:checked" ).val());
+          //alert("提交");
+          //alert($("#select1 option:checked" ).val());
             $.ajax({
                 type: "GET",
-                url: "modular/yearassessmodular/index",
+                url: "modular/yearassessmodular/relation",
                 contentType: "application/x-www-form-urlencoded;charset=utf-8",
                 data:{
                     "number" : $("#select1 option:checked" ).val()
                 },
                 dataType: "json",
                 success: function(data) {   //返回的结果
-                    alert("提交" + JSON.stringify(data));
+                    //alert("提交" + JSON.stringify(data));
+                    //$("#select2 option:checked" )
+                    let data1 = [1,2,3];
+                    for(var i = 0; i < data1.length; i++){
+                        $("#select2").append("<option value='"+data1[i]+"'>"+data1[i]+"</option>");//新增
+                    }
+                    $("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
+
                 },
         
                 error: function(data) {

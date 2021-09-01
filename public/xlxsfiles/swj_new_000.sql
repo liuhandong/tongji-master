@@ -97,3 +97,19 @@ CREATE TABLE `zc_swj_assess_upload_files` (
   `add_time` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+INSERT INTO code.zc_chk_report_form (pid,name,seqn,unit_id,topic,rf_class,rf_year,order_no,num_flag,their_garden,list1,list2,rf_note) VALUES 
+(NULL,'有限期至',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+,(NULL,'单位负责人',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+,(NULL,'填报人',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+,(NULL,'报出日期',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+,(NULL,'说明',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)
+,(0,'一)土地开发',0,4,'','r','2021',1,'0','8','','','')
+,(121,'本年末批准规划面积',1,4,'市发改委','r','2021',2,'1','8','1','8','本年末批准规划面积：指截至本年末，经国家或省级自然资源部门批准的可由园区使用的所有土地面积总和，包括已开发和待开发的土地面积。')
+,(121,'    其中：上级批准的四至范围核心区）面积',2,4,'市发改委','r','2021',3,'2','8','1','9','')
+,(121,'10规划工业产业）用地面积',3,4,'市财政局','r','2021',4,'2','8','1','6','规划工业用地面积：指截至本年末，园区批准规划面积中规划的工矿仓储用地。工矿仓储用地指用于工业生产、物资存放场所的土地面积。')
+,(0,'经济发展指标(85%)',NULL,4,'','r',NULL,5,'0','8','','0',NULL)
+;
+INSERT INTO code.zc_chk_report_form (pid,name,seqn,unit_id,topic,rf_class,rf_year,order_no,num_flag,their_garden,list1,list2,rf_note) VALUES 
+(121,'      地区生产总值',4,4,'','r','',6,'0','8','0','0',NULL)
+,(121,'        地区生产总值增速',5,4,'市发改委','r','2021',7,'0','8','0','0',NULL)

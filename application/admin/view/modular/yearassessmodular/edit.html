@@ -84,7 +84,7 @@
             </select>
         </div>
     </div>
-    
+     <!--
     <div class="form-group">
         <label class="control-label col-xs-12 col-sm-2">{:__('list1')}:</label>
         <div class="col-xs-12 col-sm-8">
@@ -92,6 +92,23 @@
                 {volist name="list1" id="data"}
                 <option value="{$data}">{$data}</option>
                 {/volist}
+            </select>
+        </div>
+    </div> -->
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <select name="row[rf_class]" class="selectpicker" id="select1" style="width: 150px;">
+                <option value="0">无</option>
+                <option value="1">月</option>
+                <option value="2">季</option>
+                <option value="3">年</option>
+            </select>
+            <select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;">
+             <!--   {volist name="list1" id="data"}
+                <option value="{$data}">{$data}</option>
+                {/volist}-->
+                
             </select>
         </div>
     </div>
@@ -110,3 +127,39 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript" charset="utf-8" src="/assets/libs/jquery/dist/jquery.min.js"></script>
+<script>
+     $(function(){
+       $("#select1").change(function(){
+          //if($("#select1 option:checked" ).val == 1){
+          //alert("提交");
+          //alert($("#select1 option:checked" ).val());
+            $.ajax({
+                type: "GET",
+                url: "modular/yearassessmodular/relation",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data:{
+                    "number" : $("#select1 option:checked" ).val()
+                },
+                dataType: "json",
+                success: function(data) {   //返回的结果
+                    //alert("提交" + JSON.stringify(data));
+                    //$("#select2 option:checked" )
+                    $("#select2").remove();
+                    var selectAfter = $('<select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;"></select>');
+                    for(var i = 0; i < data.length; i++){               
+                        selectAfter.append("<option value='"+data[i]+"'>"+data[i]+"</option>");//新增
+                    }
+                    $("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
+
+                },
+        
+                error: function(data) {
+                    alert("提交失败" + JSON.stringify(data));
+                }
+            });
+          //}
+         });
+       })
+</script>
