@@ -110,7 +110,7 @@
         
         <label for="name" class="control-label col-xs-12 col-sm-2">{$v.company_park_name}</label>
          <div class="col-xs-12 col-sm-2">
-            <input type="text" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
+            <input type="text" id="singlescore"+"1" class="form-control" style="width: 100px;" id="month_{$v.id}" onkeyup="this.value=this.value.replace(/[^\-?\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" name="row[{$v.id}]" value=""/>
         </div>
           </div>
         {/if}
@@ -132,3 +132,13 @@
     </div>
 
 </form>
+
+<script type="text/javascript" charset="utf-8" src="/assets/libs/jquery/dist/jquery.min.js"></script>
+<script>
+$(function(){
+    //var box = document.getElementById('singlescore');
+    $("#singlescore").change(function(){
+          alert($("#singlescore").val()); 
+    });
+});
+</script>

@@ -136,12 +136,14 @@
                 success: function(data) {   //返回的结果
                     //alert("提交" + JSON.stringify(data));
                     //$("#select2 option:checked" )
-                    let data1 = [1,2,3];
-                    for(var i = 0; i < data1.length; i++){
-                        $("#select2").append("<option value='"+data1[i]+"'>"+data1[i]+"</option>");//新增
+                     $("#select2").empty();
+                    for(var i = 0; i < data.length; i++){
+                        $("#select2").append("<option value='"+data[i]+"'>"+data[i]+"</option>");//新增
                     }
-                    $("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
-
+                    //$("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
+                    //$("#select2").selectmenu("refresh",true);
+                    $("#select2").selectpicker('refresh');
+                
                 },
         
                 error: function(data) {

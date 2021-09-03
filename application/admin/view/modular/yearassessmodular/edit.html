@@ -104,10 +104,7 @@
                 <option value="2">季</option>
                 <option value="3">年</option>
             </select>
-            <select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;">
-             <!--   {volist name="list1" id="data"}
-                <option value="{$data}">{$data}</option>
-                {/volist}-->
+            <select name="row[rf_class]" class="selectpicker"  id="select2" style="width: 150px;">
                 
             </select>
         </div>
@@ -146,13 +143,14 @@
                 success: function(data) {   //返回的结果
                     //alert("提交" + JSON.stringify(data));
                     //$("#select2 option:checked" )
-                    $("#select2").remove();
-                    var selectAfter = $('<select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;"></select>');
+                    $("#select2").empty();
+                    //$("#select2").removeClass('selectpicker');
+                    //var selectAfter = $('<select name="row[rf_class]" class="selectpicker" id="select2" style="width: 150px;"></select>');
                     for(var i = 0; i < data.length; i++){               
-                        selectAfter.append("<option value='"+data[i]+"'>"+data[i]+"</option>");//新增
+                        $("#select2").append("<option value='"+data[i]+"'>"+data[i]+"</option>");//新增
                     }
-                    $("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
-
+                    //$("#select2 option:eq(0)").attr('selected', 'selected');//选中第一个
+                    $("#select2").selectpicker('refresh');
                 },
         
                 error: function(data) {
